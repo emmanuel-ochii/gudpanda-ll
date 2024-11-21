@@ -79,7 +79,7 @@
                             <img :src="contactImg" alt="">
                         </div>
                         <div class="contact-info-box">
-                            <h3 class="title">Clothing Store</h3>
+                            <h3 class="title">Our Store</h3>
                             <ul>
                                 <li>Germany — 785 15h Street, Office 478/B <br> Green Mall Berlin, De 81566</li>
                                 <li>Phone: <a href="tel:+1123456788">+1 1234 567 88</a></li>

@@ -12,6 +12,7 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
     Route::get('contact', 'contact')->name('guest.contact');
     Route::get('about', 'about')->name('guest.about');
     Route::get('shop', 'shop')->name('guest.shop');
+    Route::get('search', 'search')->name('guest.search');
     Route::get('faq', 'faq')->name('guest.faq');
     Route::get('become-a-giver', 'becomeAGiver')->name('guest.becomeAGiver');
     Route::get('what-we-do', 'whatWeDo')->name('guest.whatWeDo');

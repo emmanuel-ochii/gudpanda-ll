@@ -75,7 +75,7 @@
                 <div class="footer-items">
                     <div class="footer-item">
                         <div class="icon">
-                            <img :src="footer1" alt="icon">
+                            <img src="{{asset('guest/img/icon/footer-1.png')}}" alt="icon">
                         </div>
                         <div class="content">
                             <h4 class="title">Free Shipping</h4>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="footer-item">
                         <div class="icon">
-                            <img :src="footer2" alt="icon">
+                            <img src="{{asset('guest/img/icon/footer-2.png')}}" alt="icon">
                         </div>
                         <div class="content">
                             <h4 class="title">Free Returns</h4>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="footer-item">
                         <div class="icon">
-                            <img :src="footer3" alt="icon">
+                            <img src="{{asset('guest/img/icon/footer-3.png')}}" alt="icon">
                         </div>
                         <div class="content">
                             <h4 class="title">Secured Payments</h4>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="footer-item item-2">
                         <div class="icon">
-                            <img :src="footer4" alt="icon">
+                            <img src="{{asset('guest/img/icon/footer-4.png')}}" alt="icon">
                         </div>
                         <div class="content">
                             <h4 class="title">Customer Service</h4>
@@ -220,7 +220,7 @@
                                 <span>Acceptable Payments:</span>
                                 <div class="footer-img">
                                     <Link href="/">
-                                    <img :src="footerImg1" alt="img">
+                                    <img src="{{asset('guest/img/images/footer-img-1.png')}}" alt="img">
                                     </Link>
                                 </div>
                             </div>

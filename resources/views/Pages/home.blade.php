@@ -74,7 +74,7 @@
                 <div class="col-lg-2 col-md-4">
                     <div class="food-item text-center">
                         <div class="food-img">
-                            <img :src="foodImage1" alt="food">
+                            <img src="guest/img/images/food-1.png" alt="food">
                         </div>
                         <h3 class="title"> Fruits & Vegetable <span>299 Items</span></h3>
                     </div>
@@ -82,7 +82,7 @@
                 <div class="col-lg-2 col-md-4">
                     <div class="food-item text-center">
                         <div class="food-img">
-                            <img :src="foodImage2" alt="food">
+                            <img src="{{asset('guest/img/images/food-2.png')}}" alt="food">
                         </div>
                         <h3 class="title"> Frozen Meats<span>299 Items</span></h3>
                     </div>
@@ -90,7 +90,7 @@
                 <div class="col-lg-2 col-md-4">
                     <div class="food-item text-center">
                         <div class="food-img">
-                            <img :src="foodImage3" alt="food">
+                            <img src="{{asset('guest/img/images/food-3.png')}}" alt="food">
                         </div>
                         <h3 class="title"> Organic Kiwi<span>299 Items</span></h3>
                     </div>
@@ -98,7 +98,7 @@
                 <div class="col-lg-2 col-md-4">
                     <div class="food-item text-center">
                         <div class="food-img">
-                            <img :src="foodImage4" alt="food">
+                            <img src="{{asset('guest/img/images/food-4.png')}}" alt="food">
                         </div>
                         <h3 class="title"> Red Apple<span>299 Items</span></h3>
                     </div>
@@ -106,7 +106,7 @@
                 <div class="col-lg-2 col-md-4">
                     <div class="food-item text-center">
                         <div class="food-img">
-                            <img :src="foodImage5" alt="food">
+                            <img src="{{asset('guest/img/images/food-5.png')}}" alt="food">
                         </div>
                         <h3 class="title"> Black Plum<span>299 Items</span></h3>
                     </div>
@@ -114,7 +114,7 @@
                 <div class="col-lg-2 col-md-4">
                     <div class="food-item text-center">
                         <div class="food-img">
-                            <img :src="foodImage6" alt="food">
+                            <img src="{{asset('guest/img/images/food-6.png')}}" alt="food">
                         </div>
                         <h3 class="title">Custard Apple<span>299 Items</span></h3>
                     </div>

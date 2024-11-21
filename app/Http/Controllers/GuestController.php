@@ -31,6 +31,11 @@ class GuestController extends Controller
         return view('Pages.shop');
     }
 
+    public function search()
+    {
+        return view('Pages.search');
+    }
+
     public function faq()
     {
         return view('Pages.faq');
