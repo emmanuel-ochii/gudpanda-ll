@@ -1,14 +1,15 @@
  <!-- header-area-start -->
  <header class="header header-2 sticky-active" style="--rr-color-theme-primary: #E53E3E">
+
      <div class="top-bar" style="border-top: 5px solid #E53E3E;">
          <div class="container">
              <div class="top-bar-inner">
                  <div class="top-bar-left">
                      <ul class="top-left-list">
-                         <li><a href="about.html">About</a></li>
-                         <li><a href="contact.html">My Account</a></li>
-                         <li><a href="wishlist.html">Wishlist</a></li>
-                         <li><a href="checkout.html">Checkout</a></li>
+                         <li><a href="{{route('guest.about')}}">About</a></li>
+                         <li><a href="{{route('login')}}">My Account</a></li>
+                         <li><a href="#">Wishlist</a></li>
+                         <li><a href="#">Checkout</a></li>
                      </ul>
                  </div>
                  <div class="top-bar-right">
@@ -52,17 +53,17 @@
                  <div class="header-middle-right">
                      <ul class="contact-item-list">
                          <li>
-                             <a href="wishlist.html" class="icon">
+                             <a href="#" class="icon">
                                  <i class="fa-sharp fa-regular fa-heart"></i>
                              </a>
                          </li>
-                         <li><a href="register.html" class="login-btn">Login / Register</a></li>
+                         <li><a href="/login" class="login-btn" wire:navigate>Login / Register</a></li>
                          <li>
                              <div class="header-cart-btn" style="background-color: #E53E3E">
                                  <a href="cart.html" class="icon">
                                      <i class="fa-light fa-bag-shopping"></i>
                                  </a>
-                                 <span>$0.00</span>
+                                 <span>₦0.00</span>
                              </div>
                          </li>
                      </ul>
@@ -76,7 +77,7 @@
              <div class="primary-header-inner bg-danger;">
                  <div class="header-logo mobile-logo">
                      <a href="/" wire:navigate>
-                         <img src="{{ asset('guest/img/logo/logo-3.png') }}" alt="Logo">
+                         <img src="{{ asset('guest/img/logo/logo-light.png') }}" alt="Logo">
                      </a>
                  </div>
 
@@ -122,7 +123,7 @@
                          <span>Get 30% Discount Now <span>Sale</span></span>
                          <div class="header-right-item">
                              <a href="javascript:void(0)" class="mobile-side-menu-toggle"><i
-                                     class="fa-sharp fa-solid fa-bars"></i></a>
+                                     class="fa-sharp fa-solid fa-bars" style="color: #fff"></i></a>
                          </div>
                      </div>
                      <!-- /.header-right -->

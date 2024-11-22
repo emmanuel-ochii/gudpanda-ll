@@ -8,51 +8,51 @@ class GuestController extends Controller
 {
     public function index()
     {
-        return view('Pages.home');
+        return view('Pages.Frontend.home');
     }
 
     public function bid()
     {
-        return view('Pages.bid');
+        return view('Pages.Frontend.bid');
     }
 
     public function contact()
     {
-        return view('Pages.contact');
+        return view('Pages.Frontend.contact');
     }
 
     public function about()
     {
-        return view('Pages.about');
+        return view('Pages.Frontend.about');
     }
 
     public function shop()
     {
-        return view('Pages.shop');
+        return view('Pages.Frontend.shop');
     }
 
     public function search()
     {
-        return view('Pages.search');
+        return view('Pages.Frontend.search');
     }
 
     public function faq()
     {
-        return view('Pages.faq');
+        return view('Pages.Frontend.faq');
     }
 
     public function becomeAGiver()
     {
-        return view('Pages.become-a-giver');
+        return view('Pages.Frontend.become-a-giver');
     }
 
     public function whatWeDo()
     {
-        return view('Pages.what-we-do');
+        return view('Pages.Frontend.what-we-do');
     }
 
     public function JoinOurTeam()
     {
-        return view('Pages.join-our-team');
+        return view('Pages.Frontend.join-our-team');
     }
 }

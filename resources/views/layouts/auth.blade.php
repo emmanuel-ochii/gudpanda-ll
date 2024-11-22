@@ -43,9 +43,7 @@
         <div class="mobile-side-menu" style="--rr-color-theme-primary: #E53E3E">
             <div class="side-menu-content">
                 <div class="side-menu-head">
-                    <a href='#'>
-                        <img src="{{asset('guest/img/logo/logo-3.png')}}" alt="logo">
-                    </a>
+                    <a href='#'><img :src="logo2" alt="logo"></a>
                     <button class="mobile-side-menu-close"><i class="fa-regular fa-xmark"></i></button>
                 </div>
                 <div class="side-menu-wrap"></div>
@@ -70,7 +68,7 @@
     </div> -->
         <!-- ./ preloader -->
 
-        @yield('content')
+        {{ $slot }}
 
         <footer class="footer-section bg-grey pt-20" style="--rr-color-theme-primary: #E53E3E">
             <div class="container">
@@ -258,6 +256,7 @@
     <script src="{{ asset('guest/js/ajax-form.js') }}"></script>
     <script src="{{ asset('guest/js/contact.js') }}"></script>
     <script src="{{ asset('guest/js/main.js') }}"></script>
+
 
 </body>
 
