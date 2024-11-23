@@ -46,6 +46,11 @@ class GuestController extends Controller
         return view('Pages.Frontend.become-a-giver');
     }
 
+    public function becomeAVendor()
+    {
+        return view('Pages.Frontend.become-a-vendor');
+    }
+
     public function whatWeDo()
     {
         return view('Pages.Frontend.what-we-do');

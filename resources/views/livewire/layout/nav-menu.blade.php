@@ -8,8 +8,8 @@
                      <ul class="top-left-list">
                          <li><a href="{{route('guest.about')}}">About</a></li>
                          <li><a href="{{route('login')}}">My Account</a></li>
+                         <li><a href="{{route('guest.becomeAVendor')}}"> Vendor </a></li>
                          <li><a href="#">Wishlist</a></li>
-                         <li><a href="#">Checkout</a></li>
                      </ul>
                  </div>
                  <div class="top-bar-right">

@@ -1,7 +1,7 @@
-@extends('layouts.dashboard')
+@extends('layouts.frontend')
 
 @section('title', 'Vendor | Gudpanda')
 
 @section('content')
-<h1> Vendor dashboard</h1>
+
 @endsection

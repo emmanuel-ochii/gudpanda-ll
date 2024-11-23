@@ -15,10 +15,10 @@ class User extends Authenticatable
     /**
      * The roles available in the system.
      */
-    public const ROLE_CUSTOMER = 'customer';
-    public const ROLE_SELLER = 'seller';
     public const ROLE_ADMIN = 'admin';
+    public const ROLE_MANAGER = 'manager';
     public const ROLE_VENDOR = 'vendor';
+    public const ROLE_CUSTOMER = 'customer';
 
     /**
      * Check if the user has a specific role.

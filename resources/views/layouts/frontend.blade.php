@@ -171,19 +171,22 @@
                             </div>
                             <ul class="footer-list">
                                 <li>
-                                    <Link href="/">Privacy Policy</Link>
+                                    <a href="{{route('guest.becomeAVendor')}}"> Become A Vendor </a>
                                 </li>
                                 <li>
-                                    <Link href="/">Terms & Conditions</Link>
+                                    <a href="/">Privacy Policy</a>
                                 </li>
                                 <li>
-                                    <Link href="/">Contact Us</Link>
+                                    <a href="/">Terms & Conditions</a>
                                 </li>
                                 <li>
-                                    <Link href="/">Latest News</Link>
+                                    <a href="/">Contact Us</a>
                                 </li>
                                 <li>
-                                    <Link href="/">Our Sitemaps</Link>
+                                    <a href="/">Latest News</a>
+                                </li>
+                                <li>
+                                    <a href="/">Our Sitemaps</a>
                                 </li>
                             </ul>
                         </div>

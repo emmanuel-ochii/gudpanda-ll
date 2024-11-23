@@ -25,13 +25,13 @@ new #[Layout('layouts.auth')] class extends Component {
         $user = Auth::user();
 
         if ($user->role === User::ROLE_ADMIN) {
-            $this->redirectIntended(default: route('admin.dashboard', absolute: false), navigate: true);
-        } elseif ($user->role === User::ROLE_SELLER) {
-            $this->redirectIntended(default: route('seller.dashboard', absolute: false), navigate: true);
+            $this->redirectIntended(default: route('admin.dashboard', absolute: false));
+        } elseif ($user->role === User::ROLE_MANAGER) {
+            $this->redirectIntended(default: route('manager.dashboard', absolute: false));
         } elseif ($user->role === User::ROLE_VENDOR) {
-            $this->redirectIntended(default: route('vendor.dashboard', absolute: false), navigate: true);
+            $this->redirectIntended(default: route('vendor.dashboard', absolute: false));
         } else {
-            $this->redirectIntended(default: route('customer.dashboard', absolute: false), navigate: true); // Default to customer
+            $this->redirectIntended(default: route('customer.dashboard', absolute: false));
         }
     }
 }; ?>

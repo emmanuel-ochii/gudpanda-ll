@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 // Route::view('/', 'welcome');
@@ -15,6 +17,7 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
     Route::get('search', 'search')->name('guest.search');
     Route::get('faq', 'faq')->name('guest.faq');
     Route::get('become-a-giver', 'becomeAGiver')->name('guest.becomeAGiver');
+    Route::get('become-a-vendor', 'becomeAVendor')->name('guest.becomeAVendor');
     Route::get('what-we-do', 'whatWeDo')->name('guest.whatWeDo');
     Route::get('join-our-team', 'JoinOurTeam')->name('guest.JoinOurTeam');
 });
@@ -22,6 +25,14 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
 
 Route::prefix('customer')->middleware(['auth', 'role:customer'])->controller(CustomerController::class)->group(function () {
     Route::get('/', 'dashboard')->name('customer.dashboard');
+});
+
+Route::prefix('manager')->middleware(['auth', 'role:manager'])->controller(ManagerController::class)->group(function () {
+    Route::get('/', 'dashboard')->name('manager.dashboard');
+});
+
+Route::prefix('vendor')->middleware(['auth', 'role:vendor'])->controller(VendorController::class)->group(function () {
+    Route::get('/', 'dashboard')->name('vendor.dashboard');
 });
 
 
