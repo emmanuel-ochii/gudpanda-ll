@@ -4,25 +4,37 @@ use App\Livewire\Forms\LoginForm;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use App\Models\User;
+// use Illuminate\Support\Facades\Auth;
 
-new #[Layout('layouts.auth')] class extends Component
+new #[Layout('layouts.auth')] class extends Component {
+    public LoginForm $form;
+
+    /**
+     * Handle an incoming authentication request.
+     */
+    public function login(): void
     {
-        public LoginForm $form;
+        $this->validate();
 
-        /**
-         * Handle an incoming authentication request.
-         */
-        public function login(): void
-        {
-            $this->validate();
+        $this->form->authenticate();
 
-            $this->form->authenticate();
+        Session::regenerate();
 
-            Session::regenerate();
+        // Retrieve the authenticated user
+        $user = Auth::user();
 
-            $this->redirectIntended(default: route('customer.dashboard', absolute: false), navigate: true);
+        if ($user->role === User::ROLE_ADMIN) {
+            $this->redirectIntended(default: route('admin.dashboard', absolute: false), navigate: true);
+        } elseif ($user->role === User::ROLE_SELLER) {
+            $this->redirectIntended(default: route('seller.dashboard', absolute: false), navigate: true);
+        } elseif ($user->role === User::ROLE_VENDOR) {
+            $this->redirectIntended(default: route('vendor.dashboard', absolute: false), navigate: true);
+        } else {
+            $this->redirectIntended(default: route('customer.dashboard', absolute: false), navigate: true); // Default to customer
         }
-    };?>
+    }
+}; ?>
 
 <div>
 
@@ -66,7 +78,8 @@ new #[Layout('layouts.auth')] class extends Component
                     <div class="form-item">
                         <h4 class="form-header"> Username or email address </h4>
 
-                        <input type="email" wire:model="form.email" class="form-control" autocomplete="email" required placeholder="Enter your email" />
+                        <input type="email" wire:model="form.email" class="form-control" autocomplete="email" required
+                            placeholder="Enter your email" />
 
                         @error('form.email')
                             <span class="text-danger mt-2">{{ $message }}</span>
@@ -102,7 +115,8 @@ new #[Layout('layouts.auth')] class extends Component
 
                     <div class="login-btn-wrap">
                         @if (Route::has('password.request'))
-                        <a href="{{route('password.request')}}" class="forgot" wire:navigate> Lost your password? </a>
+                            <a href="{{ route('password.request') }}" class="forgot" wire:navigate> Lost your password?
+                            </a>
                         @endif
                         OR
                         <a class="log-in" href="/register" wire:navigate> Register </a>

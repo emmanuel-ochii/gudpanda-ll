@@ -3,5 +3,5 @@
 @section('title', 'Customer | Gudpanda')
 
 @section('content')
-<h1>dashboard</h1>
+<h1>customer dashboard</h1>
 @endsection

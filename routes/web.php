@@ -20,7 +20,7 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
 });
 
 
-Route::prefix('customer')->middleware('auth')->controller(CustomerController::class)->group(function () {
+Route::prefix('customer')->middleware(['auth', 'role:customer'])->controller(CustomerController::class)->group(function () {
     Route::get('/', 'dashboard')->name('customer.dashboard');
 });
 
@@ -35,3 +35,4 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';

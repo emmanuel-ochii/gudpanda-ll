@@ -13,6 +13,22 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * The roles available in the system.
+     */
+    public const ROLE_CUSTOMER = 'customer';
+    public const ROLE_SELLER = 'seller';
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_VENDOR = 'vendor';
+
+    /**
+     * Check if the user has a specific role.
+     */
+    public function hasRole(string $role): bool
+    {
+        return $this->role === $role;
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -21,6 +37,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
