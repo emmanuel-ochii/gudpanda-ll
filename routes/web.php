@@ -22,7 +22,6 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
     Route::get('join-our-team', 'JoinOurTeam')->name('guest.JoinOurTeam');
 });
 
-
 Route::prefix('customer')->middleware(['auth', 'role:customer'])->controller(CustomerController::class)->group(function () {
     Route::get('/', 'dashboard')->name('customer.dashboard');
 });
@@ -33,9 +32,8 @@ Route::prefix('manager')->middleware(['auth', 'role:manager'])->controller(Manag
 
 Route::prefix('vendor')->middleware(['auth', 'role:vendor'])->controller(VendorController::class)->group(function () {
     Route::get('/', 'dashboard')->name('vendor.dashboard');
+    Route::get('/all-items', 'allItems')->name('vendor.allItems');
 });
-
-
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

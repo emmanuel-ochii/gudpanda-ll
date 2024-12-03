@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class VendorController extends Controller
 {
     public function dashboard()
     {
         return view('Pages.Vendor.dashboard');
+    }
+
+    public function allItems()
+    {
+        return view('Pages.Vendor.all-items');
     }
 }

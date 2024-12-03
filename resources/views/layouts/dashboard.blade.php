@@ -590,7 +590,7 @@
                         <div class="collapse" id="sidebarProducts">
                             <ul class="nav sub-navbar-nav">
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="#"> All Items</a>
+                                    <a class="sub-nav-link" href="{{route('vendor.allItems')}}" wire:navigate> All Items</a>
                                 </li>
                                 <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="#"> Add New Item </a>
