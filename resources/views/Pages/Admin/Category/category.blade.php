@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <div class="rounded bg-secondary-subtle d-flex align-items-center justify-content-center mx-auto">
-                            <img src="{{asset('dashboard/images/product/p-1.png')}}" alt="" class="avatar-xl">
+                            <img src="{{ asset('dashboard/images/product/p-1.png') }}" alt="" class="avatar-xl">
                         </div>
                         <h4 class="mt-3 mb-0">Fashion Categories</h4>
                     </div>
@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <div class="rounded bg-primary-subtle d-flex align-items-center justify-content-center mx-auto">
-                            <img src="{{asset('dashboard/images/product/p-6.png')}}" alt="" class="avatar-xl">
+                            <img src="{{ asset('dashboard/images/product/p-6.png') }}" alt="" class="avatar-xl">
                         </div>
                         <h4 class="mt-3 mb-0">Electronics Headphone</h4>
                     </div>
@@ -34,7 +34,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <div class="rounded bg-warning-subtle d-flex align-items-center justify-content-center mx-auto">
-                            <img src="{{asset('dashboard/images/product/p-7.png')}}" alt="" class="avatar-xl">
+                            <img src="{{ asset('dashboard/images/product/p-7.png') }}" alt="" class="avatar-xl">
                         </div>
                         <h4 class="mt-3 mb-0">Foot Wares</h4>
                     </div>
@@ -45,7 +45,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <div class="rounded bg-info-subtle d-flex align-items-center justify-content-center mx-auto">
-                            <img src="{{asset('dashboard/images/product/p-9.png')}}" alt="" class="avatar-xl">
+                            <img src="{{ asset('dashboard/images/product/p-9.png') }}" alt="" class="avatar-xl">
                         </div>
                         <h4 class="mt-3 mb-0">Eye Ware & Sunglass</h4>
                     </div>
@@ -53,13 +53,19 @@
             </div>
         </div>
 
+        <button type="button" data-toast data-toast-text="Welcome Back ! This is a Toast Notification"
+            data-toast-gravity="top" data-toast-position="center" data-toast-duration="3000" data-toast-close="close"
+            class="btn btn-light w-xs">
+            Top Center
+        </button>
+
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center gap-1">
                         <h4 class="card-title flex-grow-1">All Categories List</h4>
 
-                        <a href="{{route('admin.addCategory')}}" class="btn btn-sm btn-primary">
+                        <a href="{{ route('admin.addCategory') }}" class="btn btn-sm btn-primary" wire:navigate>
                             Add Product
                         </a>
 
@@ -91,35 +97,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div
-                                                    class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
-                                                    <img src="{{asset('dashboard/images/product/p-1.png')}}" alt=""
-                                                        class="avatar-md">
+                                    @forelse($categories as $category)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div
+                                                        class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
+                                                        <img src="{{ $category->image ? asset('storage/' . $category->image) : asset('dashboard/images/product/p-1.png') }}"
+                                                            alt="Category Image" class="avatar-md">
+                                                    </div>
+                                                    <p class="text-dark fw-medium fs-15 mb-0"> {{ $category->name }} </p>
                                                 </div>
-                                                <p class="text-dark fw-medium fs-15 mb-0">Fashion Men , Women & Kid's</p>
-                                            </div>
-
-                                        </td>
-                                        <td>Seller</td>
-                                        <td>FS16276</td>
-                                        <td>46233</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <a href="#!" class="btn btn-light btn-sm"><iconify-icon
-                                                        icon="solar:eye-broken"
-                                                        class="align-middle fs-18"></iconify-icon></a>
-                                                <a href="#!" class="btn btn-soft-primary btn-sm"><iconify-icon
-                                                        icon="solar:pen-2-broken"
-                                                        class="align-middle fs-18"></iconify-icon></a>
-                                                <a href="#!" class="btn btn-soft-danger btn-sm"><iconify-icon
-                                                        icon="solar:trash-bin-minimalistic-2-broken"
-                                                        class="align-middle fs-18"></iconify-icon></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="text-capitalize">{{ $category->slug }}</td>
+                                            <td>FS16276</td>
+                                            <td>
+                                                <i class="{!! $category->icon !!} bx-md"></i>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex gap-2">
+                                                    <a href="#!" class="btn btn-light btn-sm"><iconify-icon
+                                                            icon="solar:eye-broken"
+                                                            class="align-middle fs-18"></iconify-icon></a>
+                                                    <a href="#!" class="btn btn-soft-primary btn-sm"><iconify-icon
+                                                            icon="solar:pen-2-broken"
+                                                            class="align-middle fs-18"></iconify-icon></a>
+                                                    <a href="#!" class="btn btn-soft-danger btn-sm"><iconify-icon
+                                                            icon="solar:trash-bin-minimalistic-2-broken"
+                                                            class="align-middle fs-18"></iconify-icon></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

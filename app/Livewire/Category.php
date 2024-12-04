@@ -3,10 +3,9 @@
 namespace App\Livewire;
 
 use App\Models\Category as CategoryModel;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Str;
-
 
 class Category extends Component
 {
@@ -43,6 +42,22 @@ class Category extends Component
 
     public function render()
     {
+        // $categories = CategoryModel::withCount('products')->get();
+
+
         return view('livewire.category');
+    }
+
+    public function deleteCategory($id)
+    {
+        $category = CategoryModel::find($id);
+        if ($category) {
+            // Delete image from storage if exists
+            if ($category->image) {
+                \Storage::delete('public/' . $category->image);
+            }
+            $category->delete();
+            session()->flash('success', 'Category deleted successfully.');
+        }
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -11,7 +12,8 @@ class AdminController extends Controller
 
     public function category()
     {
-        return view('Pages.Admin.Category.category');
+        $categories = Category::all();
+        return view('Pages.Admin.Category.category', compact('categories'));
     }
 
     public function addCategory()

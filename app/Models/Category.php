@@ -12,4 +12,10 @@ class Category extends Model
         'icon',
         'image',
     ];
+
+    // public function products()
+    // {
+    //     return $this->hasMany(Product::class);
+    // }
+
 }

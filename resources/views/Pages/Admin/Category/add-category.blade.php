@@ -9,30 +9,6 @@
 
         {{-- <div class="row">
 
-            <div class="col-xl-3 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="bg-light text-center rounded bg-light">
-                            <img src="{{ asset('dashboard/images/product/product_avatar.png') }}" alt=""
-                                class="avatar-xxl">
-                        </div>
-                        <div class="mt-3">
-                            <h4>category_name_here</h4>
-                            <div class="row">
-                                <div class="col-lg-8 col-8">
-                                    <p class="mb-1 mt-2">Category Products :</p>
-                                    <h5 class="mb-0">N/A</h5>
-                                </div>
-                                <div class="col-lg-4 col-4">
-                                    <p class="mb-1 mt-2">ID :</p>
-                                    <h5 class="mb-0">FS16276</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="col-xl-9 col-lg-8 ">
 
                 <div class="card">
