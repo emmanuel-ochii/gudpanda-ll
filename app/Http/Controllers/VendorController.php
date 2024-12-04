@@ -13,4 +13,9 @@ class VendorController extends Controller
     {
         return view('Pages.Vendor.all-items');
     }
+
+    public function addItem()
+    {
+        return view('Pages.Vendor.add-item');
+    }
 }

@@ -33,6 +33,7 @@ Route::prefix('manager')->middleware(['auth', 'role:manager'])->controller(Manag
 Route::prefix('vendor')->middleware(['auth', 'role:vendor'])->controller(VendorController::class)->group(function () {
     Route::get('/', 'dashboard')->name('vendor.dashboard');
     Route::get('/all-items', 'allItems')->name('vendor.allItems');
+    Route::get('/add-item', 'addItem')->name('vendor.addItem');
 });
 
 Route::view('dashboard', 'dashboard')

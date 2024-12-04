@@ -116,10 +116,10 @@
                                     <a class="sub-nav-link" href="#"> All Sections </a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="#"> All Category </a>
+                                    <a class="sub-nav-link" href="{{route('admin.category')}}"> All Category </a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="category-add.html">Create</a>
+                                    <a class="sub-nav-link" href="{{route('admin.addCategory')}}">Create</a>
                                 </li>
                             </ul>
                         </div>
@@ -590,10 +590,10 @@
                         <div class="collapse" id="sidebarProducts">
                             <ul class="nav sub-navbar-nav">
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="{{route('vendor.allItems')}}" wire:navigate> All Items</a>
+                                    <a class="sub-nav-link" href="{{route('vendor.allItems')}}"> All Items</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="#"> Add New Item </a>
+                                    <a class="sub-nav-link" href="{{route('vendor.addItem')}}"> Add New Item </a>
                                 </li>
                                 <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="#"> Manage Items </a>
