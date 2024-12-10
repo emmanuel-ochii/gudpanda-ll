@@ -8,3 +8,4 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->controller(AdminCont
     Route::get('/category', 'category')->name('admin.category');
     Route::get('/add-category', 'addCategory')->name('admin.addCategory');
 });
+

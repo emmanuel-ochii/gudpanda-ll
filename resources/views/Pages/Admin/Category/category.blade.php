@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Add New Category | Admin | Gudpanda')
+@section('title', 'All Category | Admin | Gudpanda')
 
 @section('content')
 
     <!-- Start Container Fluid -->
-    <div class="container-xxl">
 
+    <div class="container-xxl">
         <div class="row">
             <div class="col-md-6 col-xl-3">
                 <div class="card">
@@ -59,6 +59,30 @@
             Top Center
         </button>
 
+
+
+        <!-- Include the Add/Edit Category Modal -->
+        @livewire('admin.category.add-category')
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Render Livewire Component Here -->
+                        <livewire:admin.category.add-category />
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
@@ -101,8 +125,7 @@
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <div
-                                                        class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
+                                                    <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
                                                         <img src="{{ $category->image ? asset('storage/' . $category->image) : asset('dashboard/images/product/p-1.png') }}"
                                                             alt="Category Image" class="avatar-md">
                                                     </div>
@@ -119,9 +142,14 @@
                                                     <a href="#!" class="btn btn-light btn-sm"><iconify-icon
                                                             icon="solar:eye-broken"
                                                             class="align-middle fs-18"></iconify-icon></a>
-                                                    <a href="#!" class="btn btn-soft-primary btn-sm"><iconify-icon
-                                                            icon="solar:pen-2-broken"
-                                                            class="align-middle fs-18"></iconify-icon></a>
+
+
+
+                                                    <button class="btn btn-soft-primary btn-sm" wire:click="$emit('editCategory', {{ $category->id }})" data-bs-toggle="modal" data-bs-target="#editCategoryModal">
+                                                        <iconify-icon icon="solar:pen-2-broken"
+                                                            class="align-middle fs-18"></iconify-icon>
+                                                    </button>
+
                                                     <a href="#!" class="btn btn-soft-danger btn-sm"><iconify-icon
                                                             icon="solar:trash-bin-minimalistic-2-broken"
                                                             class="align-middle fs-18"></iconify-icon></a>
@@ -148,8 +176,9 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+
     <!-- End Container Fluid -->
 
 @endsection
