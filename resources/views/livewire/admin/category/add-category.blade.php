@@ -73,7 +73,7 @@
                                     <option value="bx bx-home">Home Appliances</option>
                                     <option value="bx bx-tv">Electronics</option>
                                     <option value="bx bxs-tennis-ball">Sport</option>
-                                    <option value="bx bxs-closet">Fashion</option>
+                                    <option value="bx bx-closet">Fashion</option>
                                 </select>
 
                                 @error('icon')
@@ -207,4 +207,6 @@
         </div>
     </div>
 
+
 </div>
+

@@ -18,6 +18,8 @@ class AddCategory extends Component
     public $editMode = false; // Track if editing
     public $editCategoryId = null;
 
+    protected $listeners = ['testEvent' => '$refresh'];
+
     public function editCategory($id)
     {
         $category = Category::findOrFail($id);
@@ -39,24 +41,38 @@ class AddCategory extends Component
     // {
     //     $this->validate([
     //         'name' => 'required|string|max:255',
-    //         'slug' => 'required|string|max:255|unique:categories,slug',
+    //         'slug' => 'required|string|max:255|unique:categories,slug,' . $this->editCategoryId,
     //         'icon' => 'nullable|string|max:255',
     //         'image' => 'nullable|image|max:2048',
     //     ]);
 
     //     $imagePath = $this->image ? $this->image->store('categories', 'public') : null;
 
-    //     Category::create([
-    //         'name' => $this->name,
-    //         'slug' => $this->slug,
-    //         'icon' => $this->icon,
-    //         'image' => $imagePath,
-    //     ]);
+    //     if ($this->editMode) {
+    //         // Update existing category
+    //         $category = Category::findOrFail($this->editCategoryId);
+    //         $category->update([
+    //             'name' => $this->name,
+    //             'slug' => $this->slug,
+    //             'icon' => $this->icon,
+    //             'image' => $imagePath ?? $category->image,
+    //         ]);
+    //         session()->flash('success', 'Category updated successfully!');
+    //     } else {
+    //         // Create new category
+    //         Category::create([
+    //             'name' => $this->name,
+    //             'slug' => $this->slug,
+    //             'icon' => $this->icon,
+    //             'image' => $imagePath,
+    //         ]);
+    //         session()->flash('success', 'New category added successfully!');
+    //     }
 
-    //     session()->flash('success', 'New Category Added Successfully!');
-    //     $this->reset();
+    //     $this->resetForm();
     // }
 
+    // Updated saveCategory method
     public function saveCategory()
     {
         $this->validate([
@@ -69,7 +85,6 @@ class AddCategory extends Component
         $imagePath = $this->image ? $this->image->store('categories', 'public') : null;
 
         if ($this->editMode) {
-            // Update existing category
             $category = Category::findOrFail($this->editCategoryId);
             $category->update([
                 'name' => $this->name,
@@ -77,16 +92,21 @@ class AddCategory extends Component
                 'icon' => $this->icon,
                 'image' => $imagePath ?? $category->image,
             ]);
+
+            // Emit success message for Toastify
+            // $this->dispatch('toastifySuccess', 'Category updated successfully!');
             session()->flash('success', 'Category updated successfully!');
         } else {
-            // Create new category
             Category::create([
                 'name' => $this->name,
                 'slug' => $this->slug,
                 'icon' => $this->icon,
                 'image' => $imagePath,
             ]);
-            session()->flash('success', 'New category added successfully!');
+
+            // Emit success message for Toastify
+            // $this->dispatch('toastifySuccess', 'New category added successfully!');
+            session()->flash('success', 'New category created successfully!');
         }
 
         $this->resetForm();
@@ -105,6 +125,13 @@ class AddCategory extends Component
         $category->delete();
 
         session()->flash('delete', 'Category deleted successfully!');
+    }
+
+    public function triggerEvent()
+    {
+        $this->dispatchBrowserEvent('showAlert', ['message' => 'Hello from Livewire!']);
+
+        // dd('sdsd');
     }
 
     public function render()

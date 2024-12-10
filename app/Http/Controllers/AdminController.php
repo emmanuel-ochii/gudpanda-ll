@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Category;
 
 class AdminController extends Controller
 {
+
     public function dashboard()
     {
         return view('Pages.Admin.dashboard');
@@ -13,11 +15,25 @@ class AdminController extends Controller
     public function category()
     {
         $categories = Category::all();
-        return view('Pages.Admin.Category.category', compact('categories'));
+
+        return view('Pages.Admin.Category.category', [
+            'categories' => $categories,
+            'getCategoryBgClass' => [$this, 'getCategoryBgClass'],
+        ]);
+
     }
 
-    public function addCategory()
+    // Helper method to assign background class dynamically
+    public function getCategoryBgClass($index)
     {
-        return view('Pages.Admin.Category.add-category');
+        $bgClasses = [
+            'bg-secondary-subtle',
+            'bg-primary-subtle',
+            'bg-warning-subtle',
+            'bg-info-subtle',
+        ];
+
+        // Cycle through the background classes based on the index
+        return $bgClasses[$index % count($bgClasses)];
     }
 }

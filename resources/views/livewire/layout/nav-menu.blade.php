@@ -25,7 +25,7 @@
 
                  <div class="header-middle-left">
                      <div class="header-logo d-lg-block">
-                         <a href="/" wire:navigate>
+                         <a href="/" :navigwireate>
                              <img src="{{ asset('guest/img/logo/logo-3.png') }}" alt="Logo">
                          </a>
                      </div>

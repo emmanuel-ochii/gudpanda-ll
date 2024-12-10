@@ -23,7 +23,8 @@
 
     <!-- App css (Require in all Page) -->
     <link href="{{ asset('dashboard/css/app.min.css') }}" rel="stylesheet" type="text/css" />
-
+    @livewireStyles
+    @stack('styles')
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
 </head>
@@ -116,11 +117,9 @@
                                     <a class="sub-nav-link" href="#"> All Sections </a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="{{route('admin.category')}}"> All Category </a>
+                                    <a class="sub-nav-link" href="{{route('admin.category')}}"> Category Management</a>
                                 </li>
-                                <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="{{route('admin.addCategory')}}">Create</a>
-                                </li>
+
                             </ul>
                         </div>
                     </li>
@@ -1015,6 +1014,7 @@
 
     <!-- Theme Config js (Require in all Page) -->
     <script src="{{ asset('dashboard/js/config.js') }}"></script>
+    @livewireScripts
 
     <!-- Vendor Javascript (Require in all Page) -->
     <script src="{{ asset('dashboard/js/vendor.js') }}"></script>
@@ -1029,6 +1029,9 @@
 
     <!-- Dashboard Js -->
     <script src="{{ asset('dashboard/js/pages/dashboard.js') }}"></script>
+
+
+    @stack('scripts')
 
 </body>
 
