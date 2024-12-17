@@ -25,6 +25,7 @@
 
 
         <livewire:admin.category.add-category />
+        <livewire:admin.category.subcategory />
 
     </div>
 
