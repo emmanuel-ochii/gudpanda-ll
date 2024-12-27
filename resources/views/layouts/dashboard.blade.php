@@ -613,7 +613,7 @@
                             <ul class="nav sub-navbar-nav">
 
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="#"> All Orders</a>
+                                    <a class="sub-nav-link" href="{{route('vendor.orders')}}"> All Orders</a>
                                 </li>
                                 <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="#"> Fulfilled </a>

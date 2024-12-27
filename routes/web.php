@@ -32,9 +32,17 @@ Route::prefix('manager')->middleware(['auth', 'role:manager'])->controller(Manag
 
 Route::prefix('vendor')->middleware(['auth', 'role:vendor'])->controller(VendorController::class)->group(function () {
     Route::get('/', 'dashboard')->name('vendor.dashboard');
+
+    // Items/Product Management
     Route::get('/all-items', 'allItems')->name('vendor.allItems');
     Route::get('/add-item', 'addItem')->name('vendor.addItem');
+
+    // Order Management
     Route::get('/order-overview', 'orders')->name('vendor.orders');
+
+    // Coupon Management
+    Route::get('/coupon-overview', 'coupons')->name('vendor.coupons');
+    Route::get('/coupon-overview', 'coupons')->name('vendor.coupons');
 });
 
 Route::view('dashboard', 'dashboard')

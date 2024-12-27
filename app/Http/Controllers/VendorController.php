@@ -23,4 +23,14 @@ class VendorController extends Controller
     {
         return view('Pages.Vendor.Orders.order-overview');
     }
+
+    public function coupons()
+    {
+        return view('Pages.Vendor.Coupons.coupon-overview');
+    }
+
+    public function coupons()
+    {
+        return view('Pages.Vendor.Coupons.add-coupon');
+    }
 }
