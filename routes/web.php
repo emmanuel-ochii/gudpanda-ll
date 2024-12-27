@@ -34,6 +34,7 @@ Route::prefix('vendor')->middleware(['auth', 'role:vendor'])->controller(VendorC
     Route::get('/', 'dashboard')->name('vendor.dashboard');
     Route::get('/all-items', 'allItems')->name('vendor.allItems');
     Route::get('/add-item', 'addItem')->name('vendor.addItem');
+    Route::get('/order-overview', 'orders')->name('vendor.orders');
 });
 
 Route::view('dashboard', 'dashboard')

@@ -12,7 +12,7 @@
                     <div class="card-header d-flex justify-content-between align-items-center gap-1">
                         <h4 class="card-title flex-grow-1">All Product List</h4>
 
-                        <a href="product-add.html" class="btn btn-sm btn-primary">
+                        <a href="{{route('vendor.addItem')}}" class="btn btn-sm btn-primary">
                             Add Product
                         </a>
 

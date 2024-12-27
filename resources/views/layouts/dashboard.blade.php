@@ -570,7 +570,7 @@
                     <li class="menu-title">General</li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('vendor.dashboard') }}" wire:navigate>
+                        <a class="nav-link" href="{{ route('vendor.dashboard') }}">
                             <span class="nav-icon">
                                 <iconify-icon icon="solar:widget-5-bold-duotone"></iconify-icon>
                             </span>

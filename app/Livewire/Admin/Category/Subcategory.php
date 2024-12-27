@@ -19,6 +19,7 @@ class Subcategory extends Component
     public function mount()
     {
         $this->categories = Category::all();
+        // dd($this->categories);
     }
 
     public function updatedName()
@@ -28,6 +29,7 @@ class Subcategory extends Component
 
     public function saveSubCategory()
     {
+        // dd($this->name);
         $this->validate([
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
@@ -39,7 +41,7 @@ class Subcategory extends Component
         $imagePath = $this->image ? $this->image->store('subcategories', 'public') : null;
 
         if ($this->editMode) {
-            $subCategory = SubCategory::findOrFail($this->editSubCategoryId);
+            $subCategory = SubCat::findOrFail($this->editSubCategoryId);
             $subCategory->update([
                 'category_id' => $this->category_id,
                 'name' => $this->name,
@@ -49,7 +51,7 @@ class Subcategory extends Component
             ]);
             $this->dispatch('toastifySuccess', 'Sub-Category Updated Successfully!');
         } else {
-            SubCategory::create([
+            SubCat::create([
                 'category_id' => $this->category_id,
                 'name' => $this->name,
                 'slug' => $this->slug,
@@ -64,7 +66,7 @@ class Subcategory extends Component
 
     public function editSubCategory($id)
     {
-        $subCategory = SubCategory::findOrFail($id);
+        $subCategory = SubCat::findOrFail($id);
 
         $this->editMode = true;
         $this->editSubCategoryId = $subCategory->id;
@@ -76,7 +78,7 @@ class Subcategory extends Component
 
     public function deleteSubCategory($id)
     {
-        SubCategory::findOrFail($id)->delete();
+        SubCat::findOrFail($id)->delete();
         $this->dispatch('toastifySuccess', 'Sub-Category Deleted Successfully!');
     }
 
@@ -87,6 +89,8 @@ class Subcategory extends Component
 
     public function render()
     {
-        return view('livewire.admin.category.subcategory');
+        return view('livewire.admin.category.subcategory', [
+            'subcategories' => SubCat::with('category')->get(),
+        ]);
     }
 }
