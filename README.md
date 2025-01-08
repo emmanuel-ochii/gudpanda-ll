@@ -1,8 +1,8 @@
-# GudPanda - E-commerce Laravel Project
+# GudPanda - E-commerce Project
 
 ![GudPanda Preview](public/guest/img/readme.png)
 
-GudPanda is a feature-rich e-commerce platform built using Laravel. It provides seamless navigation and robust functionality to ensure a smooth shopping experience for customers. This project includes features such as product categorization, product search, a vendor dashboard, wishlist, and much more.
+GudPanda is a feature-rich e-commerce platform built using Laravel Framework. It provides seamless navigation and robust functionality to ensure a smooth shopping experience for customers. This project includes features such as product categorization, product search, a vendor dashboard, wishlist, and much more.
 
 ## Features
 
