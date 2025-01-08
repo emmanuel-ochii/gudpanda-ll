@@ -42,7 +42,7 @@ Route::prefix('vendor')->middleware(['auth', 'role:vendor'])->controller(VendorC
 
     // Coupon Management
     Route::get('/coupon-overview', 'coupons')->name('vendor.coupons');
-    Route::get('/coupon-overview', 'coupons')->name('vendor.coupons');
+    Route::get('/couponManagement', 'couponManagement')->name('vendor.couponManagement');
 });
 
 Route::view('dashboard', 'dashboard')

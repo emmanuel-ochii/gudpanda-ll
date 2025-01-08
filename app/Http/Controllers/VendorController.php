@@ -29,8 +29,8 @@ class VendorController extends Controller
         return view('Pages.Vendor.Coupons.coupon-overview');
     }
 
-    public function coupons()
+    public function couponManagement()
     {
-        return view('Pages.Vendor.Coupons.add-coupon');
+        return view('Pages.Vendor.Coupons.couponManagement');
     }
 }

@@ -647,10 +647,10 @@
                         <div class="collapse" id="sidebarCoupons">
                             <ul class="nav sub-navbar-nav">
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="coupons-list.html"> Manage Coupons </a>
+                                    <a class="sub-nav-link" href="{{route('vendor.coupons')}}"> Manage Coupons </a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="coupons-add.html">Add New Coupon/Promotion </a>
+                                    <a class="sub-nav-link" href="{{route('vendor.couponManagement')}}">Add New Coupon/Promotion </a>
                                 </li>
                             </ul>
                         </div>
