@@ -38,7 +38,7 @@ class Product extends Component
 
     public function saveProduct()
     {
-        // dd($this->gender);
+        // dd($this->stock_quantity);
 
         $this->validate([
             'name' => 'required|string|max:255',
@@ -83,6 +83,7 @@ class Product extends Component
             'product_display_image' => $displayImagePath,
             'product_gallery_images' => $galleryImagePaths,
             'stock_status' => $this->stock_status,
+            'stock_quantity' => $this->stock_quantity,
             'price' => $this->price,
             'description' => $this->description,
         ]);

@@ -44,4 +44,15 @@ class Product extends Model
     {
         return $this->belongsTo(SubCategory::class);
     }
+
+    public function product_images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    // public function tags()
+    // {
+    //     return $this->belongsToMany(Tag::class);
+    // }
+
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+
 class VendorController extends Controller
 {
     public function dashboard()
@@ -11,7 +13,10 @@ class VendorController extends Controller
 
     public function allItems()
     {
-        return view('Pages.Vendor.all-items');
+        $products = Product::with(['category', 'subcategory'])->get();
+
+        return view('Pages.Vendor.Products.all-items', compact('products'));
+
     }
 
     public function addItem()
