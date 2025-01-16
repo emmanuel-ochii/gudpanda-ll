@@ -1,5 +1,6 @@
 <div>
-    <form wire:submit.prevent="saveProduct">
+
+    <form wire:submit.prevent="saveProduct" id="productForm">
         {{-- Product image --}}
         <div class="card">
             @if (session()->has('success'))
@@ -24,25 +25,24 @@
                     </div>
                 </div>
 
-                {{-- <!-- File Upload -->
-                <form action="#" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone"
-                    data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
-                    <div class="fallback">
-                        <input wire:model="product_gallery_images" type="file" multiple />
-                    </div>
-                    <div class="dz-message needsclick">
-                        <i class="bx bx-cloud-upload fs-48 text-primary"></i>
-                        <h3 class="mt-4">Drop product images here, or <span class="text-primary">click to
-                                browse</span></h3>
-                        <span class="text-muted fs-13">
-                            1600 x 1200 (4:3) recommended. PNG, JPG and GIF files are allowed
-                        </span>
-                    </div>
-                </form> --}}
+                <div wire:ignore>
+                    <!-- FilePond Input -->
+
+                    <input type="file" id="product_gallery_images" class="filepond" multiple>
+
+                    @error('product_gallery_images.*')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div wire:loading wire:target="product_gallery_images">
+                    Uploading images, please wait...
+                </div>
+
             </div>
         </div>
 
-        {{-- Product Infromation --}}
+        {{-- Product Information --}}
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Product Information</h4>
@@ -123,7 +123,8 @@
 
                     <div class="col-lg-4">
                         <label for="gender" class="form-label">Gender</label>
-                        <select class="form-control" id="gender" wire:model='gender' data-choices data-choices-groups data-placeholder="Select Gender">
+                        <select class="form-control" id="gender" wire:model='gender' data-choices data-choices-groups
+                            data-placeholder="Select Gender">
                             <option value="">Select Gender</option>
                             <option value="Men">Men</option>
                             <option value="Women">Women</option>
@@ -322,8 +323,8 @@
                         <label for="price" class="form-label">Price</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text fs-20"><i class='bx bx-dollar'></i></span>
-                            <input type="number" step="0.01" id="price" wire:model='price' class="form-control"
-                                placeholder="000">
+                            <input type="number" step="0.01" id="price" wire:model='price'
+                                class="form-control" placeholder="000">
 
                             @error('price')
                                 <span class="text-danger">{{ $message }}</span>
@@ -335,7 +336,8 @@
                         <label for="discount_price" class="form-label">Discount Price</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text fs-20"><i class='bx bxs-discount'></i></span>
-                            <input type="number" step="0.01" id="discount_price" wire:model='discount_price' class="form-control" placeholder="000">
+                            <input type="number" step="0.01" id="discount_price" wire:model='discount_price'
+                                class="form-control" placeholder="000">
                         </div>
                     </div>
 
@@ -362,3 +364,36 @@
         </div>
     </form>
 </div>
+@push('scripts')
+    <script>
+        // Register FilePond plugins
+        FilePond.registerPlugin(
+            FilePondPluginImagePreview,
+            FilePondPluginFileValidateType,
+            FilePondPluginFileValidateSize
+        );
+
+        // Initialize FilePond
+        const inputElement = document.querySelector('#product_gallery_images');
+        const pond = FilePond.create(inputElement, {
+            allowMultiple: true,
+            allowReorder: true,
+            maxFiles: 5,
+            maxFileSize: '2MB',
+            acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+            labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse Images </span>',
+            server: {
+                process: (fieldName, file, metadata, load, error, progress, abort) => {
+                    @this.upload('product_gallery_images', file, load, error, progress);
+                },
+                revert: (filename, load) => {
+                    @this.call('removeUploadedFile', filename);
+                    load();
+                },
+            },
+            onprocessfiles: () => {
+                console.log('All files processed');
+            },
+        });
+    </script>
+@endpush

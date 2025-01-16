@@ -2,6 +2,54 @@
 
 @section('title', 'Add New Item | Vendor | Gudpanda')
 
+{{-- @push('styles')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+
+
+    <style>
+        /**
+                     * FilePond Custom Styles
+                     */
+        .filepond--drop-label {
+            color: #4c4e53;
+        }
+
+        .filepond--label-action {
+            text-decoration-color: #babdc0;
+        }
+
+        .filepond--panel-root {
+            border-radius: 2em;
+            background-color: #edf0f4;
+            height: 1em;
+        }
+
+        .filepond--item-panel {
+            background-color: #595e68;
+        }
+
+        .filepond--drip-blob {
+            background-color: #7f8a9a;
+        }
+    </style>
+@endpush --}}
+
+@push('styles')
+    <!-- FilePond CSS and JS -->
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js">
+    </script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js">
+    </script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" rel="stylesheet">
+@endpush
+
 @section('content')
 
     <!-- Start Container Fluid -->
@@ -78,7 +126,6 @@
 
                                 </div>
                             </div>
-
                         </div>
 
                     </div>
@@ -100,10 +147,11 @@
 
                 <livewire:product.product />
 
-               
             </div>
         </div>
     </div>
     <!-- End Container Fluid -->
 
 @endsection
+
+

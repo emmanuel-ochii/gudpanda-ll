@@ -46,7 +46,8 @@
                                                     <div class="d-flex align-items-center gap-2">
                                                         <div
                                                             class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
-                                                            <img src="{{ $product->product_display_image ? asset('storage/' . $product->product_display_image) : asset('dashboard/images/product/p-2.png') }}" alt="product Image" class="avatar-md">
+                                                            <img src="{{ $product->product_display_image ? asset('storage/' . $product->product_display_image) : asset('dashboard/images/product/p-2.png') }}"
+                                                                alt="product Image" class="avatar-md">
 
                                                         </div>
                                                         <div>
@@ -112,3 +113,5 @@
     </div>
     <!-- End Container Fluid -->
 @endsection
+
+
