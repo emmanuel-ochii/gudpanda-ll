@@ -280,15 +280,9 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
-                        <label for="product-stock" class="form-label">Tag</label>
-                        <select class="form-control" id="choices-multiple-remove-button" data-choices
-                            data-choices-removeItem name="choices-multiple-remove-button" multiple wire:ignore>
-                            <option value="Fashion" selected>Fashion</option>
-                            <option value="Electronics">Electronics</option>
-                            <option value="Watches">Watches</option>
-                            <option value="Headphones">Headphones</option>
-                        </select>
+                    <div class="col-lg-4" wire:ignore>
+                        <label for="product-tags" class="form-label">Tag</label>
+                        <input type="text" id="product-tags" wire:model.defer="tags" />
 
                         @error('tag')
                             <span class="text-danger">{{ $message }}</span>
@@ -394,6 +388,27 @@
             onprocessfiles: () => {
                 console.log('All files processed');
             },
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tagsInput = document.getElementById('product-tags');
+
+            // Initialize Choices.js for the input field
+            const tagsChoices = new Choices(tagsInput, {
+                delimiter: ',',
+                removeItemButton: true, // Allow tag removal
+                duplicateItemsAllowed: false, // Prevent duplicate tags
+                editItems: true, // Allow editing of tags
+                placeholderValue: 'Add tags', // Placeholder text
+            });
+
+            // Sync tags with Livewire on change
+            tagsInput.addEventListener('change', () => {
+                const selectedTags = tagsChoices.getValue(true); // Get tags as an array of strings
+                @this.set('tags', selectedTags); // Sync with Livewire 'tags' property
+            });
         });
     </script>
 @endpush

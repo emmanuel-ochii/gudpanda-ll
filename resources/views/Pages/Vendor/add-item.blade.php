@@ -2,40 +2,6 @@
 
 @section('title', 'Add New Item | Vendor | Gudpanda')
 
-{{-- @push('styles')
-    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
-
-
-    <style>
-        /**
-                     * FilePond Custom Styles
-                     */
-        .filepond--drop-label {
-            color: #4c4e53;
-        }
-
-        .filepond--label-action {
-            text-decoration-color: #babdc0;
-        }
-
-        .filepond--panel-root {
-            border-radius: 2em;
-            background-color: #edf0f4;
-            height: 1em;
-        }
-
-        .filepond--item-panel {
-            background-color: #595e68;
-        }
-
-        .filepond--drip-blob {
-            background-color: #7f8a9a;
-        }
-    </style>
-@endpush --}}
-
 @push('styles')
     <!-- FilePond CSS and JS -->
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
@@ -48,6 +14,15 @@
     </script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" rel="stylesheet">
+
+    {{-- Choices Plugins --}}
+    <script src="
+    https://cdn.jsdelivr.net/npm/choices.js@11.0.3/public/assets/scripts/choices.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/choices.js@11.0.3/public/assets/styles/choices.min.css
+    " rel="stylesheet">
+
 @endpush
 
 @section('content')
@@ -152,6 +127,5 @@
     </div>
     <!-- End Container Fluid -->
 
+
 @endsection
-
-

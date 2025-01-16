@@ -18,10 +18,10 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('subcategory_id')->nullable()->constrained('sub_categories')->onDelete('set null');
             $table->string('brand')->nullable();
-            $table->integer('weight')->nullable();
+            $table->decimal('weight', 5, 2)->nullable();
             $table->enum('gender', ['Men', 'Women', 'Unisex'])->default('Unisex');
             $table->integer('sku_number')->nullable();
-            $table->string('tag')->nullable();
+            $table->json('tags')->nullable();
             $table->enum('refundable', ['refundable', 'non-refundable'])->default('non-refundable');
             $table->string('product_display_image')->nullable();
             $table->json('product_gallery_images')->nullable(); // Handles multiple images

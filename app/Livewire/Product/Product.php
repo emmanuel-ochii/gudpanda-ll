@@ -21,7 +21,7 @@ class Product extends Component
     public $weight;
     public $gender;
     public $sku_number;
-    public $tag;
+    public $tags = [];
     public $refundable = 'non-refundable';
     public $product_display_image;
     public $product_gallery_images = [];
@@ -50,7 +50,29 @@ class Product extends Component
 
     public function saveProduct()
     {
-        // dd(vars: $this->product_gallery_images);
+        dd(vars: $this->weight);
+
+        $this->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:products,slug',
+            'category_id' => 'required|exists:categories,id',
+            'subcategory_id' => 'nullable|exists:sub_categories,id',
+            'brand' => 'nullable|string|max:255',
+            'weight' => 'required|numeric|min:0',
+            'gender' => 'required|in:Men,Women,Unisex',
+            'sku_number' => 'nullable|numeric|max:255',
+            'tags' => 'nullable|array',
+            'tags.*' => 'string|max:255',
+            'refundable' => 'required|in:refundable,non-refundable',
+            'product_display_image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'product_gallery_images' => 'nullable|array|max:5', // Validate the array itself
+            'product_gallery_images.*' => 'image|mimes:jpg,jpeg,png|max:2048', // Validate each image
+            'stock_status' => 'required|in:in-stock,out-of-stock,pre-order',
+            'stock_quantity' => 'nullable|numeric',
+            'price' => 'required|numeric|min:0',
+            'discount_price' => 'nullable|numeric|min:0',
+            'description' => 'nullable|string',
+        ]);
 
         try {
             $displayImagePath = $this->product_display_image
@@ -71,7 +93,7 @@ class Product extends Component
                 'weight' => $this->weight,
                 'gender' => $this->gender,
                 'sku_number' => $this->sku_number,
-                'tag' => $this->tag,
+                'tags' => json_encode($this->tags),
                 'refundable' => $this->refundable,
                 'product_display_image' => $displayImagePath,
                 'product_gallery_images' => json_encode($galleryImagePaths),
@@ -90,7 +112,6 @@ class Product extends Component
 
             session()->flash('error', 'An error occurred while saving the product. Please try again.');
         }
-
     }
 
     public function render()

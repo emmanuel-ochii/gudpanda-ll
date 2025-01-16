@@ -20,7 +20,7 @@ class Product extends Model
         'gender',
         'sku_number',
         'stock_quantity',
-        'tag',
+        'tags',
         'refundable',
         'product_display_image',
         'product_gallery_images',
