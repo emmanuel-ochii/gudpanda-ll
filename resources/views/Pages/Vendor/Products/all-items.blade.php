@@ -30,6 +30,7 @@
                                             <th>Price</th>
                                             <th>Stock</th>
                                             <th>Category</th>
+                                            <th>Sub-Category</th>
                                             <th>Rating</th>
                                             <th>Action</th>
                                         </tr>
@@ -69,20 +70,25 @@
                                                     <p class="mb-0 text-muted">155 Sold</p>
                                                 </td>
                                                 <td> {{ $product->category->name ?? 'N/A' }} </td>
-                                                <td> <span class="badge p-1 bg-light text-dark fs-12 me-1"><i
+                                                <td> {{ $product->subcategory->name ?? 'N/A' }} </td>
+                                                <td>
+                                                    <span class="badge p-1 bg-light text-dark fs-12 me-1"><i
                                                             class="bx bxs-star align-text-top fs-14 text-warning me-1"></i>
-                                                        4.5</span> 55 Review</td>
+                                                        4.5</span> 55 Review
+                                                </td>
                                                 <td>
                                                     <div class="d-flex gap-2">
-                                                        <a href="#!" class="btn btn-light btn-sm"><iconify-icon
-                                                                icon="solar:eye-broken"
-                                                                class="align-middle fs-18"></iconify-icon></a>
-                                                        <a href="#!" class="btn btn-soft-primary btn-sm"><iconify-icon
-                                                                icon="solar:pen-2-broken"
-                                                                class="align-middle fs-18"></iconify-icon></a>
-                                                        <a href="#!" class="btn btn-soft-danger btn-sm"><iconify-icon
-                                                                icon="solar:trash-bin-minimalistic-2-broken"
-                                                                class="align-middle fs-18"></iconify-icon></a>
+                                                        <a href="{{ route('vendor.showItemDetails', $product->id) }}" class="btn btn-light btn-sm">
+                                                            <iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon>
+                                                        </a>
+                                                        <a href="#!" class="btn btn-soft-primary btn-sm">
+                                                            <iconify-icon icon="solar:pen-2-broken"
+                                                                class="align-middle fs-18"></iconify-icon>
+                                                        </a>
+                                                        <a href="#!" class="btn btn-soft-danger btn-sm">
+                                                            <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
+                                                                class="align-middle fs-18"></iconify-icon>
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -113,5 +119,3 @@
     </div>
     <!-- End Container Fluid -->
 @endsection
-
-

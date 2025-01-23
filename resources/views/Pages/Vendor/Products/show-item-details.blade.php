@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Item Details | Vendor | Gudpanda')
+@section('title', $product->name . ' | Vendor | Gudpanda')
 
 @section('content')
     <!-- Start Container Fluid -->
@@ -12,56 +12,41 @@
                     <div class="card-body">
                         <!-- Crossfade -->
                         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
                             <div class="carousel-inner" role="listbox">
-                                <div class="carousel-item active">
-                                    <img src="assets/images/product/p-1.png" alt=""
-                                        class="img-fluid bg-light rounded">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="assets/images/product/p-10.png" alt=""
-                                        class="img-fluid bg-light rounded">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="assets/images/product/p-13.png" alt=""
-                                        class="img-fluid bg-light rounded">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="assets/images/product/p-14.png" alt=""
-                                        class="img-fluid bg-light rounded">
-                                </div>
-                                <!-- <a class="carousel-control-prev rounded" href="#carouselExampleFade" role="button" data-bs-slide="prev">
-                                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                              <span class="visually-hidden">Previous</span>
-                                         </a>
-                                         <a class="carousel-control-next rounded" href="#carouselExampleFade" role="button" data-bs-slide="next">
-                                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                              <span class="visually-hidden">Next</span>
-                                         </a> -->
+                                @foreach ($product->gallery_images as $index => $image)
+                                    <div class="carousel-item @if ($index == 0) active @endif">
+                                        <img src="{{ asset('storage/' . $image) }}" alt="Product Image"
+                                            class="img-fluid bg-light rounded">
+                                    </div>
+                                @endforeach
+
+                                <a class="carousel-control-prev rounded" href="#carouselExampleFade" role="button"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </a>
+                                <a class="carousel-control-next rounded" href="#carouselExampleFade" role="button"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </a>
                             </div>
+
                             <div class="carousel-indicators m-0 mt-2 d-lg-flex d-none position-static h-100">
-                                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0"
-                                    aria-current="true" aria-label="Slide 1" class="w-auto h-auto rounded bg-light active">
-                                    <img src="assets/images/product/p-1.png" class="d-block avatar-xl"
-                                        alt="swiper-indicator-img">
-                                </button>
-                                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1"
-                                    aria-label="Slide 2" class="w-auto h-auto rounded bg-light">
-                                    <img src="assets/images/product/p-10.png" class="d-block avatar-xl"
-                                        alt="swiper-indicator-img">
-                                </button>
-                                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2"
-                                    aria-label="Slide 3" class="w-auto h-auto rounded bg-light">
-                                    <img src="assets/images/product/p-13.png" class="d-block avatar-xl"
-                                        alt="swiper-indicator-img">
-                                </button>
-                                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="3"
-                                    aria-label="Slide 3" class="w-auto h-auto rounded bg-light">
-                                    <img src="assets/images/product/p-14.png" class="d-block avatar-xl"
-                                        alt="swiper-indicator-img">
-                                </button>
+
+                                @foreach ($product->gallery_images as $index => $image)
+                                    <button type="button" data-bs-target="#carouselExampleFade"
+                                        data-bs-slide-to="{{ $index }}"
+                                        class="w-auto h-auto rounded bg-light {{ $index === 0 ? 'active' : '' }}">
+                                        <img src="{{ asset('storage/' . $image) }}" class="d-block avatar-xl"
+                                            alt="Indicator {{ $index + 1 }}">
+                                    </button>
+                                @endforeach
                             </div>
                         </div>
                     </div>
+
                     <div class="card-footer border-top">
                         <div class="row g-2">
                             <div class="col-lg-5">
@@ -72,7 +57,7 @@
                             <div class="col-lg-5">
                                 <a href="#!"
                                     class="btn btn-light d-flex align-items-center justify-content-center gap-2 w-100"><i
-                                        class="bx bx-shopping-bag fs-18"></i> Buy Now</a>
+                                        class="bx bx-shopping-bag fs-18"></i> Checkout </a>
                             </div>
                             <div class="col-lg-2">
                                 <button type="button"
@@ -88,8 +73,9 @@
                     <div class="card-body">
                         <h4 class="badge bg-success text-light fs-14 py-1 px-2">New Arrival</h4>
                         <p class="mb-1">
-                            <a href="#!" class="fs-24 text-dark fw-medium">Men Black Slim Fit T-shirt</a>
+                            <a href="#!" class="fs-24 text-dark fw-medium">{{ $product->name }}</a>
                         </p>
+
                         <div class="d-flex gap-2 align-items-center">
                             <ul class="d-flex text-warning m-0 fs-20  list-unstyled">
                                 <li>
@@ -111,10 +97,12 @@
                             <p class="mb-0 fw-medium fs-18 text-dark">4.5 <span class="text-muted fs-13">(55
                                     Review)</span></p>
                         </div>
-                        <h2 class="fw-medium my-3">$80.00 <span
-                                class="fs-16 text-decoration-line-through">$100.00</span><small
+
+                        <h2 class="fw-medium my-3">${{ $product->price }} <span
+                                class="fs-16 text-decoration-line-through">${{ $product->discount_price }}</span><small
                                 class="text-danger ms-2">(30%Off)</small></h2>
 
+                        {{-- Variation, Color and Size --}}
                         <div class="row align-items-center g-2 mt-3">
                             <div class="col-lg-3">
                                 <div class="">
@@ -144,6 +132,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-3">
                                 <div class="">
                                     <h5 class="text-dark fw-medium">Size > <span class="text-muted">M</span></h5>
@@ -173,6 +162,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="quantity mt-4">
                             <h4 class="text-dark fw-medium mt-3">Quantity :</h4>
                             <div
@@ -186,6 +176,7 @@
                                     class="plus bg-light text-dark border-0 rounded-1 fs-20 lh-1 h-100">+</button>
                             </div>
                         </div>
+
                         <ul class="d-flex flex-column gap-2 list-unstyled fs-15 my-3">
                             <li>
                                 <i class='bx bx-check text-success'></i> In Stock
@@ -198,25 +189,18 @@
                                     class="text-dark fw-medium">CODE123</span>
                             </li>
                         </ul>
+
                         <h4 class="text-dark fw-medium">Description :</h4>
-                        <p class="text-muted">Top in sweatshirt fabric made from a cotton blend with a soft brushed inside.
-                            Relaxed fit with dropped shoulders, long sleeves and ribbing around the neckline, cuffs and hem.
-                            Small metal text applique. <a href="#!" class="link-primary">Read more</a></p>
-                        <h4 class="text-dark fw-medium mt-3">Available offers :</h4>
-                        <div class="d-flex align-items-center mt-2">
-                            <i class="bx bxs-bookmarks text-success me-3 fs-20 mt-1"></i>
-                            <p class="mb-0"><span class="fw-medium text-dark">Bank Offer</span> 10% instant discount on
-                                Bank Debit Cards, up to $30 on orders of $50 and above</p>
-                        </div>
-                        <div class="d-flex align-items-center mt-2">
-                            <i class="bx bxs-bookmarks text-success me-3 fs-20 mt-1"></i>
-                            <p class="mb-0"><span class="fw-medium text-dark">Bank Offer</span> Grab our exclusive offer
-                                now and save 20% on your next purchase! Don't miss out, shop today!</p>
-                        </div>
+                        <p class="text-muted">
+                            {{ $product->description }}
+                        </p>
+
                     </div>
                 </div>
             </div>
         </div>
+
+        {{-- Free shipping, special discount, customer service --}}
         <div class="row">
             <div class="col-lg-12">
                 <div class="card bg-light-subtle">
@@ -280,6 +264,8 @@
                 </div>
             </div>
         </div>
+
+        {{-- Item details and Review --}}
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
@@ -289,44 +275,66 @@
                     <div class="card-body">
                         <div class="">
                             <ul class="d-flex flex-column gap-2 list-unstyled fs-14 text-muted mb-0">
-                                <li><span class="fw-medium text-dark">Product Dimensions</span><span
-                                        class="mx-2">:</span>53.3 x 40.6 x 6.4 cm; 500 Grams</li>
-                                <li><span class="fw-medium text-dark">Date First Available</span><span
-                                        class="mx-2">:</span>22 September 2023</li>
-                                <li><span class="fw-medium text-dark">Department</span><span class="mx-2">:</span>Men
+                                <li>
+                                    <span class="fw-medium text-dark">Product Dimensions</span><span
+                                        class="mx-2">:</span>53.3 x 40.6 x 6.4 cm; 500 Grams
                                 </li>
-                                <li><span class="fw-medium text-dark">Manufacturer </span><span
-                                        class="mx-2">:</span>Greensboro, NC 27401 Prospa-Pal</li>
-                                <li><span class="fw-medium text-dark">ASIN</span><span class="mx-2">:</span>B0CJMML118
+                                <li>
+                                    <span class="fw-medium text-dark">Date First Available</span><span
+                                        class="mx-2">:</span>22 September 2023
                                 </li>
-                                <li><span class="fw-medium text-dark">Item model number</span><span
-                                        class="mx-2">:</span> 1137AZ</li>
-                                <li><span class="fw-medium text-dark">Country of Origin</span><span
-                                        class="mx-2">:</span>U.S.A</li>
-                                <li><span class="fw-medium text-dark">Manufacturer </span><span
+                                <li>
+                                    <span class="fw-medium text-dark">Department</span><span class="mx-2">:</span>Men
+                                </li>
+                                <li>
+                                    <span class="fw-medium text-dark">Manufacturer </span><span
+                                        class="mx-2">:</span>Greensboro, NC 27401 Prospa-Pal
+                                </li>
+                                <li>
+                                    <span class="fw-medium text-dark">ASIN</span><span class="mx-2">:</span>B0CJMML118
+                                </li>
+                                <li>
+                                    <span class="fw-medium text-dark">Item model number</span><span
+                                        class="mx-2">:</span> 1137AZ
+                                </li>
+                                <li>
+                                    <span class="fw-medium text-dark">Country of Origin</span><span
+                                        class="mx-2">:</span>U.S.A
+                                </li>
+                                <li>
+                                    <span class="fw-medium text-dark">Manufacturer </span><span
                                         class="mx-2">:</span>Suite 941 89157 Baumbach Views, Gilbertmouth, TX 31542-2135
                                 </li>
-                                <li><span class="fw-medium text-dark">Packer </span><span class="mx-2">:</span>Apt. 726
-                                    80915 Hung Stream, Rowetown, WV 44364</li>
-                                <li><span class="fw-medium text-dark">Importer</span><span class="mx-2">:</span>Apt. 726
-                                    80915 Hung Stream, Rowetown, WV 44364</li>
-                                <li><span class="fw-medium text-dark">Item Weight</span><span class="mx-2">:</span>500 g
+                                <li>
+                                    <span class="fw-medium text-dark">Packer </span><span class="mx-2">:</span>Apt. 726
+                                    80915 Hung Stream, Rowetown, WV 44364
                                 </li>
-                                <li><span class="fw-medium text-dark">Item Dimensions LxWxH</span><span
-                                        class="mx-2">:</span>53.3 x 40.6 x 6.4 Centimeters</li>
-                                <li><span class="fw-medium text-dark">Generic Name</span><span
-                                        class="mx-2">:</span>T-Shirt</li>
-                                <li><span class="fw-medium text-dark">Best Sellers Rank</span><span
-                                        class="mx-2">:</span>#13 in Clothing & Accessories</li>
+                                <li>
+                                    <span class="fw-medium text-dark">Importer</span><span class="mx-2">:</span>Apt. 726
+                                    80915 Hung Stream, Rowetown, WV 44364
+                                </li>
+                                <li>
+                                    <span class="fw-medium text-dark">Item Weight</span><span
+                                        class="mx-2">:</span>{{ $product->weight }} g
+                                </li>
+                                <li>
+                                    <span class="fw-medium text-dark">Item Dimensions LxWxH</span><span
+                                        class="mx-2">:</span>53.3 x 40.6 x 6.4 Centimeters
+                                </li>
+                                <li>
+                                    <span class="fw-medium text-dark">Generic Name</span><span
+                                        class="mx-2">:</span>T-Shirt
+                                </li>
+                                <li>
+                                    <span class="fw-medium text-dark">Best Sellers Rank</span><span
+                                        class="mx-2">:</span>#13 in Clothing & Accessories
+                                </li>
                             </ul>
-                        </div>
-                        <div class="mt-3">
-                            <a href="#!" class="link-primary text-decoration-underline link-offset-2">View More
-                                Details <i class="bx bx-arrow-to-right align-middle fs-16"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header">
@@ -359,7 +367,6 @@
                             </ul>
                             <p class="fw-medium mb-0 text-dark fs-15">Excellent Quality</p>
                         </div>
-
                         <p class="mb-0 text-dark fw-medium fs-15">Reviewed in Canada on 16 November 2023</p>
                         <p class="text-muted">Medium thickness. Did not shrink after wash. Good elasticity . XL size
                             Perfectly fit for 5.10 height and heavy body. Did not fade after wash. Only for maroon colour
@@ -370,7 +377,7 @@
                             <a href="#!" class="fs-14 text-muted">Report</a>
                         </div>
 
-                        <hr class="my-3">
+                        <hr cdlass="my-3">
 
                         <div class="d-flex align-items-center gap-2">
                             <img src="assets/images/users/avatar-4.jpg" alt="" class="avatar-md rounded-circle">

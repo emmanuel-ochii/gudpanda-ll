@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Product;
@@ -26,7 +25,22 @@ class VendorController extends Controller
 
     public function itemDetails()
     {
-        return view('Pages.Vendor.Products.item-details');
+        return view('Pages.Vendor.Products.show-item-details');
+    }
+
+    public function showItemDetails($id)
+    {
+        $product = Product::findOrFail($id);
+
+        // $product->gallery_images = json_decode($product->product_gallery_images);
+
+        $product->gallery_images = $product->product_gallery_images
+        ? json_decode($product->product_gallery_images)
+        : [];
+
+        // dd($galleryImages);
+
+        return view('Pages.Vendor.Products.show-item-details', compact('product'));
     }
 
     public function orders()
