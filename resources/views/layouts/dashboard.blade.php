@@ -23,7 +23,9 @@
 
     <!-- App css (Require in all Page) -->
     <link href="{{ asset('dashboard/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+
     @livewireStyles
+
     @stack('styles')
     <!-- Scripts -->
     @vite(['resources/js/app.js'])

@@ -36,6 +36,7 @@ Route::prefix('vendor')->middleware(['auth', 'role:vendor'])->controller(VendorC
     // Items/Product Management
     Route::get('/all-items', 'allItems')->name('vendor.allItems');
     Route::get('/add-item', 'addItem')->name('vendor.addItem');
+    Route::get('/item-details', 'itemDetails')->name('vendor.itemDetails');
 
     // Order Management
     Route::get('/order-overview', 'orders')->name('vendor.orders');

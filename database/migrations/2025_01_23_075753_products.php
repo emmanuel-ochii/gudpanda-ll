@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('vendor_id')->nullable(); // Foreign key to vendors table
+            $table->unsignedBigInteger('user_id')->nullable();   // Foreign key to users table
             $table->string('name');
             $table->string('slug')->unique();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
@@ -31,6 +33,10 @@ return new class extends Migration
             $table->decimal('discount_price', 10, 2)->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+
+            // Foreign key constraints
+            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
@@ -39,6 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        //
     }
 };

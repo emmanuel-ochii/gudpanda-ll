@@ -73,7 +73,7 @@ new class extends Component
                             <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom text-wrap">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img src="http://esde.com" class="img-fluid me-2 avatar-sm rounded-circle"
+                                        <img src="{{asset('dashboard/images/users/avatar-1.jpg')}}" class="img-fluid me-2 avatar-sm rounded-circle"
                                             alt="avatar-1" />
                                     </div>
                                     <div class="flex-grow-1">
@@ -105,7 +105,7 @@ new class extends Component
                             <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img src="http://esde.com" class="img-fluid me-2 avatar-sm rounded-circle"
+                                        <img src="{{asset('dashboard/images/users/avatar-1.jpg')}}" class="img-fluid me-2 avatar-sm rounded-circle"
                                             alt="avatar-3" />
                                     </div>
                                     <div class="flex-grow-1">
@@ -162,7 +162,7 @@ new class extends Component
                     <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
-                            <img class="rounded-circle" width="32" src="avatar1" alt="avatar-3">
+                            <img class="rounded-circle" width="32" src="{{asset('dashboard/images/users/avatar-1.jpg')}}" alt="avatar-3">
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">

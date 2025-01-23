@@ -29,8 +29,20 @@ class Product extends Model
         'price',
         'discount_price',
         'description',
+        'vendor_id',
+        'user_id',
     ];
 
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     protected $casts = [
         'product_gallery_images' => 'array',
     ];
