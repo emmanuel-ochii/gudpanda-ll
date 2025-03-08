@@ -33,7 +33,6 @@ class VendorController extends Controller
     }
 
 
-
     public function addItem()
     {
         return view('Pages.Vendor.add-item');
