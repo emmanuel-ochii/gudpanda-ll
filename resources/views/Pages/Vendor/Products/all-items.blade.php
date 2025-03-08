@@ -78,13 +78,20 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex gap-2">
-                                                        <a href="{{ route('vendor.showItemDetails', $product->id) }}" class="btn btn-light btn-sm">
-                                                            <iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon>
+                                                        <!-- Show Product -->
+                                                        <a href="{{ route('vendor.showItemDetails', $product->id) }}"
+                                                            class="btn btn-light btn-sm">
+                                                            <iconify-icon icon="solar:eye-broken"
+                                                                class="align-middle fs-18"></iconify-icon>
                                                         </a>
-                                                        <a href="#!" class="btn btn-soft-primary btn-sm">
+
+                                                        <!-- Edit Product -->
+                                                        <a href="{{ route('vendor.editItem', $product->id) }}"
+                                                            class="btn btn-soft-primary btn-sm">
                                                             <iconify-icon icon="solar:pen-2-broken"
                                                                 class="align-middle fs-18"></iconify-icon>
                                                         </a>
+
                                                         <a href="#!" class="btn btn-soft-danger btn-sm">
                                                             <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
                                                                 class="align-middle fs-18"></iconify-icon>

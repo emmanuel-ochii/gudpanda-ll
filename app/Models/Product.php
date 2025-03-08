@@ -42,7 +42,7 @@ class Product extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
     protected $casts = [
         'product_gallery_images' => 'array',
     ];
@@ -57,10 +57,10 @@ class Product extends Model
         return $this->belongsTo(SubCategory::class);
     }
 
-    public function product_images()
-    {
-        return $this->hasMany(ProductImage::class);
-    }
+    // public function product_images()
+    // {
+    //     return $this->hasMany(ProductImage::class);
+    // }
 
     // public function tags()
     // {

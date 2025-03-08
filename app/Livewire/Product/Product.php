@@ -24,8 +24,9 @@ class Product extends Component
     public $subcategory_id;
 
     public $name, $slug, $brand, $weight, $gender, $sku_number, $tags = [], $refundable = '';
-    public $product_display_image, $product_gallery_images            = [];
+    public $product_display_image, $product_gallery_images = [];
     public $stock_status = '', $stock_quantity, $price, $discount_price, $description;
+
 
     public function mount()
     {
@@ -103,9 +104,9 @@ class Product extends Component
             'tags'                     => 'nullable|array',
             'tags.*'                   => 'string|max:255',
             'refundable'               => 'required|in:refundable,non-refundable',
-            'product_display_image'    => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'product_display_image'    => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
             'product_gallery_images'   => 'nullable|array|max:5',              // Validate the array itself
-            'product_gallery_images.*' => 'image|mimes:jpg,jpeg,png|max:2048', // Validate each image
+            'product_gallery_images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048', // Validate each image
             'stock_status'             => 'required|in:in-stock,out-of-stock,pre-order',
             'stock_quantity'           => 'nullable|numeric',
             'price'                    => 'required|numeric|min:0',

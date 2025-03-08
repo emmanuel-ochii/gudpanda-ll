@@ -30,7 +30,7 @@ new class extends Component
 
                 <!-- Menu Toggle Button -->
                 <div class="topbar-item">
-                    <h4 class="fw-bold topbar-button pe-none text-uppercase mb-0"> Welcome! </h4>
+                    <h4 class="fw-bold topbar-button pe-none text-normal mb-0"> Welcome {{ auth()->user()->name }} </h4>
                 </div>
             </div>
 
@@ -167,7 +167,7 @@ new class extends Component
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <h6 class="dropdown-header">Welcome Gaston!</h6>
+                        <h6 class="dropdown-header">Welcome {{ auth()->user()->name }}</h6>
                         <a class="dropdown-item" href="pages-profile.html">
                             <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span
                                 class="align-middle">Profile</span>
