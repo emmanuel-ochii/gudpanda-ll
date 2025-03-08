@@ -77,6 +77,7 @@ new #[Layout('layouts.auth')] class extends Component {
                 'name' => $validated['name'],
                 'email' => $validated['email'],
                 'password' => $validated['password'],
+                'role' => 'vendor',
             ]);
 
             // Create the vendor details in the vendors table
