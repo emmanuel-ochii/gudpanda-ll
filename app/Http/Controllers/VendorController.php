@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Vendor;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -14,22 +15,23 @@ class VendorController extends Controller
         return view('Pages.Vendor.dashboard');
     }
 
+
     public function allItems()
     {
-        // Get the vendor associated with the authenticated user
-        $vendor = Vendor::where('user_id', auth()->id())->first();
+        $vendor = auth()->user()->vendor;
 
+        // Check if the user is a vendor
         if (!$vendor) {
-            return view('Pages.Vendor.Products.all-items', ['products' => []]); // Return empty if no vendor found
+            return redirect()->back()->with('error', 'Unauthorized access');
         }
 
-        // Retrieve only the products that belong to the vendor
         $products = Product::with(['category', 'subcategory'])
             ->where('vendor_id', $vendor->id)
-            ->get();
+            ->get(); // Ensures Collection
 
         return view('Pages.Vendor.Products.all-items', compact('products'));
     }
+
 
 
     public function addItem()
