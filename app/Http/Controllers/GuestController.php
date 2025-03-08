@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class GuestController extends Controller
 {
     public function index()
     {
-        return view('Pages.Frontend.home');
+
+        $categories = Category::all();
+
+        return view('Pages.Frontend.home', compact('categories'));
     }
 
     public function bid()

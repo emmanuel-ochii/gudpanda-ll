@@ -6,9 +6,9 @@
              <div class="top-bar-inner">
                  <div class="top-bar-left">
                      <ul class="top-left-list">
-                         <li><a href="{{route('guest.about')}}">About</a></li>
-                         <li><a href="{{route('login')}}">My Account</a></li>
-                         <li><a href="{{route('guest.becomeAVendor')}}"> Vendor </a></li>
+                         <li><a href="{{ route('guest.about') }}">About</a></li>
+                         <li><a href="{{ route('login') }}">My Account</a></li>
+                         <li><a href="{{ route('guest.becomeAVendor') }}"> Vendor </a></li>
                          <li><a href="#">Wishlist</a></li>
                      </ul>
                  </div>
@@ -34,9 +34,15 @@
                              <span class="current">Categories</span>
                              <ul class="list">
                                  <li data-value="" class="option selected focus">Categories</li>
-                                 <li data-value="vdt" class="option">Fashion</li>
-                                 <li data-value="can" class="option">Organic</li>
-                                 <li data-value="uk" class="option">Furniture</li>
+                                 @if ($categories->isNotEmpty())
+                                     @foreach ($categories as $category)
+                                         <li data-value="{{ $category->slug }}" class="option">
+                                             {{ $category->name }}
+                                         </li>
+                                     @endforeach
+                                 @else
+                                     <li class="option">No categories available.</li>
+                                 @endif
                              </ul>
                          </div>
                          <div class="category-form-wrap">
@@ -105,7 +111,7 @@
                                  <a href="/become-a-giver" wire:navigate> Become A Giver</a>
                              </li>
                              <li>
-                                 <a href="{{route('guest.bid')}}" wire:navigate> Bid </a>
+                                 <a href="{{ route('guest.bid') }}" wire:navigate> Bid </a>
                              </li>
                              <li>
                                  <a href="faq" wire:navigate> FAQs </a>
