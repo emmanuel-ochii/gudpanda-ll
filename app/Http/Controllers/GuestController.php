@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class GuestController extends Controller
 {
     public function index()
     {
 
-        $categories = Category::all();
+        // $categories = Category::all()->map(function ($category) {
+        //     $category->product_count = Product::where('category_id', $category->id)->count();
+        //     return $category;
+        // });
+
+        $categories = Category::withCount('products')->get();
 
         return view('Pages.Frontend.home', compact('categories'));
     }

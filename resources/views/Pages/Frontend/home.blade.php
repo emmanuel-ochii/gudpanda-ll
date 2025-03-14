@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="col-lg-6 col-md-8">
-                    <div class="hero-item" data-background="{{asset('guest/img/bg-img/hero-item-bg.png')}}">
+                    <div class="hero-item" data-background="{{ asset('guest/img/bg-img/hero-item-bg.png') }}">
                         <div class="product-overlay"></div>
                         <div class="hero-item-content">
                             <span class="sub-title">Get up to 30% off on your first ₦150 purchase</span>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-lg-3 col-md-5">
                     <div class="discount-item food-discount hero-discount"
-                        data-background="{{asset('guest/img/images/hero-discount.png')}}">
+                        data-background="{{ asset('guest/img/images/hero-discount.png') }}">
                         <div class="content">
                             <span class="offer"> -45 % Offer</span>
                             <h3 class="title">
@@ -67,58 +67,25 @@
         </div>
     </section>
 
-    <!-- ./ hero-section -->
+    <!-- ./ category-section -->
     <section class="food-section pt-60 pb-60">
         <div class="container">
             <div class="row food-wrap gy-lg-0 gy-4 justify-content-center">
-                <div class="col-lg-2 col-md-4">
-                    <div class="food-item text-center">
-                        <div class="food-img">
-                            <img src="guest/img/images/food-1.png" alt="food">
+
+                @foreach ($categories as $category)
+                    <div class="col-lg-2 col-md-4">
+                        <div class="food-item text-center">
+                            <div class="food-img">
+                                <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}">
+                            </div>
+                            <h3 class="title">
+                                {{ $category->name }}
+                                <span>{{ $category->products_count }} Items</span>
+                            </h3>
                         </div>
-                        <h3 class="title"> Fruits & Vegetable <span>299 Items</span></h3>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-4">
-                    <div class="food-item text-center">
-                        <div class="food-img">
-                            <img src="{{asset('guest/img/images/food-2.png')}}" alt="food">
-                        </div>
-                        <h3 class="title"> Frozen Meats<span>299 Items</span></h3>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4">
-                    <div class="food-item text-center">
-                        <div class="food-img">
-                            <img src="{{asset('guest/img/images/food-3.png')}}" alt="food">
-                        </div>
-                        <h3 class="title"> Organic Kiwi<span>299 Items</span></h3>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4">
-                    <div class="food-item text-center">
-                        <div class="food-img">
-                            <img src="{{asset('guest/img/images/food-4.png')}}" alt="food">
-                        </div>
-                        <h3 class="title"> Red Apple<span>299 Items</span></h3>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4">
-                    <div class="food-item text-center">
-                        <div class="food-img">
-                            <img src="{{asset('guest/img/images/food-5.png')}}" alt="food">
-                        </div>
-                        <h3 class="title"> Black Plum<span>299 Items</span></h3>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4">
-                    <div class="food-item text-center">
-                        <div class="food-img">
-                            <img src="{{asset('guest/img/images/food-6.png')}}" alt="food">
-                        </div>
-                        <h3 class="title">Custard Apple<span>299 Items</span></h3>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>
@@ -136,8 +103,8 @@
                             <a href="#"><i class="fa-regular fa-plus"></i>Shop Now</a>
                         </div>
                         <div class="men">
-                            <img src="{{asset('guest/img/images/food-discount-1.png')}}" alt="img">
-                            </div>
+                            <img src="{{ asset('guest/img/images/food-discount-1.png') }}" alt="img">
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -149,8 +116,8 @@
                             <a href="#"><i class="fa-regular fa-plus"></i>Shop Now</a>
                         </div>
                         <div class="men">
-                            <img src="{{asset('guest/img/images/food-discount-2.png')}}" alt="img">
-                            </div>
+                            <img src="{{ asset('guest/img/images/food-discount-2.png') }}" alt="img">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -167,7 +134,7 @@
                 <div class="col-xl-2 col-lg-3 col-md-6">
                     <div class="product-item">
                         <div class="product-thumb">
-                            <img src="{{asset('guest/img/product/product-1.png')}}" alt="img">
+                            <img src="{{ asset('guest/img/product/product-1.png') }}" alt="img">
                         </div>
                         <div class="product-content">
                             <span class="category">Nescafe USA</span>
@@ -186,7 +153,7 @@
                 <div class="col-xl-2 col-lg-3 col-md-6">
                     <div class="product-item">
                         <div class="product-thumb">
-                            <img src="{{asset('guest/img/product/product-2.png')}}" alt="img">
+                            <img src="{{ asset('guest/img/product/product-2.png') }}" alt="img">
                         </div>
                         <div class="product-content">
                             <span class="category">Nescafe USA</span>
@@ -211,8 +178,8 @@
                                 <p>Feed your family the best</p>
                             </div>
                             <div class="men">
-                                <img src="{{asset('guest/img/images/food-discount-3.png')}}" alt="img">
-                                </div>
+                                <img src="{{ asset('guest/img/images/food-discount-3.png') }}" alt="img">
+                            </div>
                         </div>
                         <div class="discount-item food-discount" style="--rr-color-theme-primary: #67B02E">
                             <div class="content">
@@ -221,14 +188,15 @@
                                 <p>Feed your family the best</p>
                             </div>
                             <div class="men">
-                                <img src="{{asset('guest/img/images/food-discount-4.png')}}" alt="img"></div>
+                                <img src="{{ asset('guest/img/images/food-discount-4.png') }}" alt="img">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-6">
                     <div class="product-item">
                         <div class="product-thumb">
-                            <img src="{{asset('guest/img/product/product-3.png')}}" alt="img">
+                            <img src="{{ asset('guest/img/product/product-3.png') }}" alt="img">
                         </div>
                         <div class="product-content">
                             <span class="category">Nescafe USA</span>
@@ -246,7 +214,7 @@
                 <div class="col-xl-2 col-lg-3 col-md-6">
                     <div class="product-item">
                         <div class="product-thumb">
-                            <img src="{{asset('guest/img/product/product-4.png')}}" alt="img">
+                            <img src="{{ asset('guest/img/product/product-4.png') }}" alt="img">
                         </div>
                         <div class="product-content">
                             <span class="category">Nescafe USA</span>
