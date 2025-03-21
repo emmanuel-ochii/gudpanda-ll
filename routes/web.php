@@ -39,6 +39,8 @@ Route::prefix('vendor')->middleware(['auth', 'role:vendor'])->controller(VendorC
     Route::get('/item-details', 'itemDetails')->name('vendor.itemDetails');
     Route::get('/products/{product}', 'showItemDetails')->name('vendor.showItemDetails');
     Route::get('/products/{product}/edit', 'editItem')->name('vendor.editItem');
+    Route::delete('/product/delete-item/{id}', [VendorController::class, 'deleteItem'])->name('vendor.deleteItem');
+
 
 
     // Order Management

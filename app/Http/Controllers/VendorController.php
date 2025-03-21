@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Vendor;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class VendorController extends Controller
@@ -53,19 +54,36 @@ class VendorController extends Controller
         return view('Pages.Vendor.Products.show-item-details', compact('product'));
     }
 
-    // public function editItem($id)
-    // {
-    //     $product = Product::findOrFail($id);
-
-    //     return view('Pages.Vendor.Products.edit-item', compact('product'));
-    // }
-
     public function editItem(Product $product) // Route model binding
-{
-    return view('Pages.Vendor.Products.edit-item', [
-        'productId' => $product->id, // Explicitly passing productId
-    ]);
-}
+    {
+        return view('Pages.Vendor.Products.edit-item', [
+            'productId' => $product->id, // Explicitly passing productId
+        ]);
+    }
+
+    public function deleteItem($id)
+    {
+        $product = Product::findOrFail($id);
+
+        // Delete product images from storage
+        if ($product->product_display_image) {
+            Storage::delete('public/' . $product->product_display_image);
+        }
+
+        if ($product->product_gallery_images) {
+            $galleryImages = json_decode($product->product_gallery_images, true);
+            if (is_array($galleryImages)) {
+                foreach ($galleryImages as $image) {
+                    Storage::delete('public/' . $image);
+                }
+            }
+        }
+
+        // Delete product from the database
+        $product->delete();
+
+        return redirect()->back()->with('success', 'Product deleted successfully!');
+    }
 
     public function orders()
     {

@@ -54,9 +54,8 @@
                                                         <div>
                                                             <span
                                                                 class="text-dark fw-medium fs-15">{{ $product->name }}</span>
-                                                            <p class="text-muted mb-0 mt-1 fs-13"><span>Size : </span>S , M
-                                                                , L
-                                                                , Xl
+                                                            <p class="text-muted mb-0 mt-1 fs-13"><span> Size : </span> S ,
+                                                                M , L , Xl
                                                             </p>
                                                         </div>
                                                     </div>
@@ -92,10 +91,22 @@
                                                                 class="align-middle fs-18"></iconify-icon>
                                                         </a>
 
-                                                        <a href="#!" class="btn btn-soft-danger btn-sm">
+                                                        {{-- <a href="#!" class="btn btn-soft-danger btn-sm">
                                                             <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
                                                                 class="align-middle fs-18"></iconify-icon>
-                                                        </a>
+                                                        </a> --}}
+
+                                                        <!-- Delete Product -->
+                                                        <form action="{{ route('vendor.deleteItem', $product->id) }}"
+                                                            method="POST" class="d-inline delete-form">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button"
+                                                                class="btn btn-soft-danger btn-sm delete-btn">
+                                                                <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
+                                                                    class="align-middle fs-18"></iconify-icon>
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -126,3 +137,34 @@
     </div>
     <!-- End Container Fluid -->
 @endsection
+
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all delete buttons
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Find the closest form
+                    let form = this.closest('.delete-form');
+
+                    // Show SweetAlert confirmation
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit(); // Submit the form
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+@endpush
