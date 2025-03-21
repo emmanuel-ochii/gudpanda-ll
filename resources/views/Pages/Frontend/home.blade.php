@@ -68,7 +68,7 @@
         </div>
     </section>
 
-    <!-- ./ Category name,image and count -->
+    <!-- ./ Category name, image, and count -->
     <section class="food-section pt-60 pb-60">
         <div class="container">
             <div class="row food-wrap gy-lg-0 gy-4 justify-content-center">
@@ -76,13 +76,15 @@
                 @foreach ($categories as $category)
                     <div class="col-lg-2 col-md-4">
                         <div class="food-item text-center">
-                            <div class="food-img">
-                                <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}">
-                            </div>
-                            <h3 class="title">
-                                {{ $category->name }}
-                                <span>{{ $category->products_count }} Items</span>
-                            </h3>
+                            <a href="{{ route('guest.home.categoryProducts', $category->name) }}" class="category-link">
+                                <div class="food-img">
+                                    <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}">
+                                </div>
+                                <h3 class="title">
+                                    {{ $category->name }}
+                                    <span>{{ $category->products_count }} Items</span>
+                                </h3>
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -90,6 +92,7 @@
             </div>
         </div>
     </section>
+
     <!-- ./ food-section -->
 
     <!-- ./ Weekend discount -->

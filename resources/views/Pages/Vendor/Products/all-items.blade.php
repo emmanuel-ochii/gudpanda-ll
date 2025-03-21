@@ -91,11 +91,6 @@
                                                                 class="align-middle fs-18"></iconify-icon>
                                                         </a>
 
-                                                        {{-- <a href="#!" class="btn btn-soft-danger btn-sm">
-                                                            <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
-                                                                class="align-middle fs-18"></iconify-icon>
-                                                        </a> --}}
-
                                                         <!-- Delete Product -->
                                                         <form action="{{ route('vendor.deleteItem', $product->id) }}"
                                                             method="POST" class="d-inline delete-form">

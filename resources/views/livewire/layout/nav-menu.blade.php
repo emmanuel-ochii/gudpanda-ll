@@ -45,14 +45,17 @@
                                  @endif
                              </ul>
                          </div>
+
+                         {{-- Search form --}}
                          <div class="category-form-wrap">
-                             <form class="header-form">
-                                 <input class="form-control" type="text" name="search"
-                                     placeholder="Search for products, categories or brands">
-                                 <button class="submit rr-primary-btn"> Search <i
-                                         class="fa-light fa-magnifying-glass"></i></button>
-                             </form>
-                         </div>
+                            <form action="{{ route('guest.search') }}" method="GET" class="header-form">
+                                <input class="form-control" type="text" name="query"
+                                       placeholder="Search for products, categories or brands" required>
+                                <button type="submit" class="submit rr-primary-btn">
+                                    Search <i class="fa-light fa-magnifying-glass"></i>
+                                </button>
+                            </form>
+                        </div>
                      </div>
                  </div>
 
