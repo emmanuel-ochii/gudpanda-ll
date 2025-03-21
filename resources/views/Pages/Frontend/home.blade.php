@@ -4,6 +4,7 @@
 
 @section('content')
 
+
     <section class="hero-section-2 pt-60">
         <div class="container">
             <div class="row gy-lg-0 gy-4 justify-content-center">
@@ -67,7 +68,7 @@
         </div>
     </section>
 
-    <!-- ./ category-section -->
+    <!-- ./ Category name,image and count -->
     <section class="food-section pt-60 pb-60">
         <div class="container">
             <div class="row food-wrap gy-lg-0 gy-4 justify-content-center">
@@ -91,6 +92,7 @@
     </section>
     <!-- ./ food-section -->
 
+    <!-- ./ Weekend discount -->
     <section class="discount-section overflow-hidden pb-100">
         <div class="container">
             <div class="row gy-lg-0 gy-4">
@@ -125,6 +127,7 @@
     </section>
     <!-- ./ discount-section -->
 
+    <!-- ./ Deal of the week listing -->
     <section class="deal-section pb-60">
         <div class="container">
             <div class="row product-item-wrap gy-xl-0 gy-4 justify-content-center">

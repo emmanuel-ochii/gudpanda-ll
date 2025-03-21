@@ -41,14 +41,16 @@
                             <div class="col-md-3">
                                 <img src="{{ asset('storage/' . $galleryImage) }}" alt="Gallery Image"
                                     class="img-thumbnail" width="100">
-                                <button type="button" wire:click="removeGalleryImage('{{ $galleryImage }}')" class="btn btn-danger btn-sm">Remove</button>
+                                <button type="button" wire:click="removeGalleryImage('{{ $galleryImage }}')"
+                                    class="btn btn-danger btn-sm">Remove</button>
                             </div>
                         @endforeach
                     </div>
 
                     {{-- Upload New Gallery Images --}}
                     <div class="mt-3">
-                        <input type="file" id="product_gallery_images"  wire:model="product_gallery_images" multiple class="form-control">
+                        <input type="file" id="product_gallery_images" wire:model="product_gallery_images" multiple
+                            class="form-control">
 
                         @error('product_gallery_images.*')
                             <span class="text-danger">{{ $message }}</span>
@@ -253,7 +255,7 @@
             labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse Images </span>',
             server: {
                 process: (fieldName, file, metadata, load, error, progress, abort) => {
-                    @this.uploadMultiple('product_gallery_images', [file], load, error, progress);
+                    @this.upload('product_gallery_images', file, load, error, progress);
                 },
                 revert: (filename, load) => {
                     @this.call('removeUploadedFile', filename);

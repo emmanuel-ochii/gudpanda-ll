@@ -100,7 +100,7 @@ class Product extends Component
             'brand'                    => 'nullable|string|max:255',
             'weight'                   => 'required|numeric|min:0',
             'gender'                   => 'required|in:Men,Women,Unisex',
-            'sku_number'               => 'nullable|numeric|max:255',
+            'sku_number'               => 'nullable|string|max:255|unique:products,sku_number|regex:/^[A-Z0-9\-]+$/',
             'tags'                     => 'nullable|array',
             'tags.*'                   => 'string|max:255',
             'refundable'               => 'required|in:refundable,non-refundable',

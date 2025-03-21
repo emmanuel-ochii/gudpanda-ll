@@ -32,7 +32,8 @@
 
         <div class="row"></div>
 
-        <livewire:vendor.product-edit :product-id="$productId">
+        <livewire:vendor.product-edit :productId="$productId">
+
 
         </div>
     </div>

@@ -53,12 +53,19 @@ class VendorController extends Controller
         return view('Pages.Vendor.Products.show-item-details', compact('product'));
     }
 
-    public function editItem($id)
-    {
-        $product = Product::findOrFail($id);
+    // public function editItem($id)
+    // {
+    //     $product = Product::findOrFail($id);
 
-        return view('Pages.Vendor.Products.edit-item', compact('product'));
-    }
+    //     return view('Pages.Vendor.Products.edit-item', compact('product'));
+    // }
+
+    public function editItem(Product $product) // Route model binding
+{
+    return view('Pages.Vendor.Products.edit-item', [
+        'productId' => $product->id, // Explicitly passing productId
+    ]);
+}
 
     public function orders()
     {

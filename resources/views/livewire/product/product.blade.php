@@ -1,5 +1,4 @@
 <div>
-
     <form wire:submit.prevent="saveProduct" id="productForm">
         {{-- Product image --}}
         <div class="card">
@@ -282,8 +281,8 @@
 
                         <div class="col-lg-4">
                             <div class="mb-3">
-                                <label for="sku_number" class="form-label">SKU Number</label>
-                                <input type="number" id="sku_number" wire:model='sku_number' class="form-control"
+                                <label for="sku_number" class="form-label">SKU </label>
+                                <input type="text" id="sku_number" wire:model='sku_number' class="form-control"
                                     placeholder="#******">
 
                                 @error('sku_number')
