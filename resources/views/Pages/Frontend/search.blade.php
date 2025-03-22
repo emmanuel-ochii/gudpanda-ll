@@ -31,64 +31,75 @@
 
                 <div class="col-lg-9 col-md-12">
                     <div class="shop-grid-left">
-                        <div class="top-grid-content">
-                            <div class="shop-tab-nav">
-                                <nav>
-                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-                                            data-bs-target="#nav-home" type="button" role="tab"
-                                            aria-controls="nav-home" aria-selected="true">
-                                            <svg width="20" height="17" viewBox="0 0 20 17"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="15" width="5" height="3" fill="currentColor" />
-                                                <rect x="15" y="7" width="5" height="3" fill="currentColor" />
-                                                <rect x="15" y="14" width="5" height="3" fill="currentColor" />
-                                                <rect x="7.71875" width="5" height="3" fill="currentColor" />
-                                                <rect x="7.71875" y="7" width="5" height="3" fill="currentColor" />
-                                                <rect x="7.71875" y="14" width="5" height="3"
-                                                    fill="currentColor" />
-                                                <rect width="5" height="3" fill="currentColor" />
-                                                <rect y="7" width="5" height="3" fill="currentColor" />
-                                                <rect y="14" width="5" height="3" fill="currentColor" />
-                                            </svg>
-
-                                        </button>
-
-                                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-                                            data-bs-target="#nav-profile" type="button" role="tab"
-                                            aria-controls="nav-profile" aria-selected="false">
-                                            <svg width="20" height="17" viewBox="0 0 20 17"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="5.71875" width="14.2857" height="3" fill="currentColor" />
-                                                <rect x="5.71875" y="7" width="14.2857" height="3"
-                                                    fill="currentColor" />
-                                                <rect x="5.71875" y="14" width="14.2857" height="3"
-                                                    fill="currentColor" />
-                                                <rect width="3.80952" height="3" fill="currentColor" />
-                                                <rect y="7" width="3.80952" height="3" fill="currentColor" />
-                                                <rect y="14" width="3.80952" height="3" fill="currentColor" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </nav>
-                                <span>Showing 1–12 of 88 results</span>
-                            </div>
-                            <div class="nice-select shop-select country" tabindex="0">
-                                <span class="current">Default Shorting</span>
-                                <ul class="list">
-                                    <li data-value="" class="option selected focus">Default Shorting</li>
-                                    <li data-value="vdt" class="option">Most Popular</li>
-                                    <li data-value="can" class="option">Date</li>
-                                    <li data-value="uk" class="option">Tranding</li>
-                                    <li data-value="dk" class="option">Featured</li>
-                                    <li data-value="dl" class="option">Discounted</li>
-                                </ul>
-                            </div>
-                        </div>
-
                         @if ($products->isEmpty())
-                            <p>No products found matching your search.</p>
+                                <div class="mb-3 text-center">
+                                    <span class="display-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                            <path fill="#111" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10" opacity="0.4" stroke-width="0.5" stroke="#111" />
+                                            <path fill="#111" d="M8.397 17.447a.75.75 0 0 0 1.05.155A4.27 4.27 0 0 1 12 16.75a4.27 4.27 0 0 1 2.553.852a.75.75 0 1 0 .894-1.204A5.77 5.77 0 0 0 12 15.25a5.77 5.77 0 0 0-3.447 1.148a.75.75 0 0 0-.156 1.049M15 12c.552 0 1-.672 1-1.5S15.552 9 15 9s-1 .672-1 1.5s.448 1.5 1 1.5m-6 0c.552 0 1-.672 1-1.5S9.552 9 9 9s-1 .672-1 1.5s.448 1.5 1 1.5" stroke-width="0.5" stroke="#111" />
+                                        </svg>
+                                    </span>
+                                    <h4 class="fw-bold py-2">Sorry! No products found matching your search. </h4>
+                                </div>
+
                         @else
+                            <div class="top-grid-content">
+                                <div class="shop-tab-nav">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                                data-bs-target="#nav-home" type="button" role="tab"
+                                                aria-controls="nav-home" aria-selected="true">
+                                                <svg width="20" height="17" viewBox="0 0 20 17"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <rect x="15" width="5" height="3" fill="currentColor" />
+                                                    <rect x="15" y="7" width="5" height="3" fill="currentColor" />
+                                                    <rect x="15" y="14" width="5" height="3" fill="currentColor" />
+                                                    <rect x="7.71875" width="5" height="3" fill="currentColor" />
+                                                    <rect x="7.71875" y="7" width="5" height="3"
+                                                        fill="currentColor" />
+                                                    <rect x="7.71875" y="14" width="5" height="3"
+                                                        fill="currentColor" />
+                                                    <rect width="5" height="3" fill="currentColor" />
+                                                    <rect y="7" width="5" height="3" fill="currentColor" />
+                                                    <rect y="14" width="5" height="3" fill="currentColor" />
+                                                </svg>
+
+                                            </button>
+
+                                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                                data-bs-target="#nav-profile" type="button" role="tab"
+                                                aria-controls="nav-profile" aria-selected="false">
+                                                <svg width="20" height="17" viewBox="0 0 20 17"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <rect x="5.71875" width="14.2857" height="3" fill="currentColor" />
+                                                    <rect x="5.71875" y="7" width="14.2857" height="3"
+                                                        fill="currentColor" />
+                                                    <rect x="5.71875" y="14" width="14.2857" height="3"
+                                                        fill="currentColor" />
+                                                    <rect width="3.80952" height="3" fill="currentColor" />
+                                                    <rect y="7" width="3.80952" height="3" fill="currentColor" />
+                                                    <rect y="14" width="3.80952" height="3" fill="currentColor" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </nav>
+                                    <span>Showing 1–12 of 88 results</span>
+                                </div>
+                                <div class="nice-select shop-select country" tabindex="0">
+                                    <span class="current">Default Shorting</span>
+                                    <ul class="list">
+                                        <li data-value="" class="option selected focus">Default Shorting</li>
+                                        <li data-value="vdt" class="option">Most Popular</li>
+                                        <li data-value="can" class="option">Date</li>
+                                        <li data-value="uk" class="option">Tranding</li>
+                                        <li data-value="dk" class="option">Featured</li>
+                                        <li data-value="dl" class="option">Discounted</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
                             <div class="tab-content" id="nav-tabContent">
                                 {{-- Display for grid layout of search --}}
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
