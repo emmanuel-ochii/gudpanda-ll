@@ -74,20 +74,20 @@
             <div class="row food-wrap gy-lg-0 gy-4 justify-content-center">
 
                 @foreach ($categories as $category)
-                    <div class="col-lg-2 col-md-4">
-                        <div class="food-item text-center">
-                            <a href="{{ route('guest.home.categoryProducts', $category->name) }}" class="category-link">
-                                <div class="food-img">
-                                    <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}">
-                                </div>
-                                <h3 class="title">
-                                    {{ $category->name }}
-                                    <span>{{ $category->products_count }} Items</span>
-                                </h3>
-                            </a>
-                        </div>
+                <div class="col-lg-2 col-md-4">
+                    <div class="food-item text-center">
+                        <a href="{{ route('guest.categoryProducts', $category->slug) }}" class="category-link">
+                            <div class="food-img">
+                                <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}">
+                            </div>
+                            <h3 class="title">
+                                {{ $category->name }}
+                                <span>{{ $category->products_count }} Items</span>
+                            </h3>
+                        </a>
                     </div>
-                @endforeach
+                </div>
+            @endforeach
 
             </div>
         </div>

@@ -15,12 +15,15 @@ class GuestController extends Controller
         return view('Pages.Frontend.home', compact('categories'));
     }
 
-    public function categoryProducts($id)
+    public function categoryProducts($slug)
     {
-        $category = Category::with('products')->findOrFail($id);
-        $products = $category->products; // Fetch products in this category
+        // Find category by slug for better SEO
+    $category = Category::where('slug', $slug)->firstOrFail();
 
-        return view('Pages.Frontend.product-category.blade.php', compact('category', 'products'));
+        // Fetch only active products for optimization
+        $products = $category->products()->paginate(12);
+
+        return view('Pages.Frontend.product-category', compact('category', 'products'));
     }
 
     public function search(Request $request)
@@ -68,11 +71,6 @@ class GuestController extends Controller
     {
         return view('Pages.Frontend.shop');
     }
-
-    // public function search()
-    // {
-    //     return view('Pages.Frontend.search');
-    // }
 
     public function faq()
     {

@@ -10,8 +10,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->controller(GuestController::class)->group(function () {
     Route::get('', 'index')->name('guest.home');
-    Route::get('/category/products/{id}', 'categoryProducts')->name('guest.home.categoryProducts');
-    // Route::get('/product/{id}', 'showItem')->name('product.details');
+
+    // Category-based product listing
+    Route::get('/category/{slug}', 'categoryProducts')->name('guest.categoryProducts');
+
     Route::get('/product/{category}/{product_name}', 'showItem')->name('product.details');
 
 
