@@ -20,7 +20,7 @@ class GuestController extends Controller
         $category = Category::with('products')->findOrFail($id);
         $products = $category->products; // Fetch products in this category
 
-        return view('Pages.Frontend.category-products', compact('category', 'products'));
+        return view('Pages.Frontend.product-category.blade.php', compact('category', 'products'));
     }
 
     public function search(Request $request)
@@ -37,12 +37,17 @@ class GuestController extends Controller
 
         return view('Pages.Frontend.search', compact('products', 'query'));
     }
-    public function showItem($id)
-{
-    $product = Product::with('category')->findOrFail($id);
-    return view('Pages.Frontend.product-details', compact('product'));
-}
 
+    public function showItem($categorySlug, $productName)
+    {
+        // Find the category by its slug
+        $category = Category::where('slug', $categorySlug)->firstOrFail();
+
+        // Find the product by its name and make sure it belongs to the correct category
+        $product = $category->products()->where('slug', $productName)->firstOrFail();
+
+        return view('Pages.Frontend.product-details', compact('product'));
+    }
 
     public function bid()
     {

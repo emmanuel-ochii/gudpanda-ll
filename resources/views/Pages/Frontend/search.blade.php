@@ -39,7 +39,7 @@
                                             <path fill="#111" d="M8.397 17.447a.75.75 0 0 0 1.05.155A4.27 4.27 0 0 1 12 16.75a4.27 4.27 0 0 1 2.553.852a.75.75 0 1 0 .894-1.204A5.77 5.77 0 0 0 12 15.25a5.77 5.77 0 0 0-3.447 1.148a.75.75 0 0 0-.156 1.049M15 12c.552 0 1-.672 1-1.5S15.552 9 15 9s-1 .672-1 1.5s.448 1.5 1 1.5m-6 0c.552 0 1-.672 1-1.5S9.552 9 9 9s-1 .672-1 1.5s.448 1.5 1 1.5" stroke-width="0.5" stroke="#111" />
                                         </svg>
                                     </span>
-                                    <h4 class="fw-bold py-2">Sorry! No products found matching your search. </h4>
+                                    <h4 class="fw-bold py-2"> Sorry! No products found matching your search. </h4>
                                 </div>
 
                         @else
@@ -125,8 +125,10 @@
                                                     <div class="shop-content">
                                                         <span class="category">{{ $product->category->name }}</span>
                                                         <h3 class="title">
-                                                            <a
-                                                                href="{{ route('product.details', $product->name) }}">{{ $product->name }}</a>
+
+                                                            <a href="{{ route('product.details', [$product->category->slug, $product->slug]) }}">
+                                                                {{ $product->name }}
+                                                            </a>
                                                         </h3>
                                                         <div class="review-wrap">
                                                             <ul class="review">
@@ -178,8 +180,10 @@
                                                 <div class="shop-content">
                                                     <span class="category">{{ $product->category->name }}</span>
                                                     <h3 class="title">
-                                                        <a
-                                                            href="{{ route('product.details', $product->name) }}">{{ $product->name }}</a>
+
+                                                        <a href="{{ route('product.details', [$product->category->slug, $product->slug]) }}">
+                                                            {{ $product->name }}
+                                                        </a>
                                                     </h3>
                                                     <p>{{ Str::limit($product->description, 100) }}</p>
                                                     <div class="review-wrap">
