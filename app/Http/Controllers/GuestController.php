@@ -10,11 +10,13 @@ class GuestController extends Controller
 {
     public function index()
     {
-        $categories = Category::withCount('products')->get();
+        $categories = Category::whereHas('products')->withCount('products')->get();
 
         // Fetch latest active products (limit for performance)
         // $products = Product::where('status', 'active')->latest()->take(12)->get();
-        $products = Product::latest()->take(12)->get();
+        $products = Product::with('category')->latest()
+        ->take(12)
+        ->get();
 
         return view('Pages.Frontend.home', compact('categories', 'products'));
     }

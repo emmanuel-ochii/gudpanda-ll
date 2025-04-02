@@ -258,18 +258,17 @@
                 <div class="section-heading mb-0 heading-2">
                     <h2 class="section-title">Popular Products</h2>
                 </div>
+                <!-- Dynamic Category Filters -->
                 <ul class="project-filter text-center">
                     <li class="active" data-filter="*">Show All</li>
-                    <li data-filter=".cake ">Cake & Milk</li>
-                    <li data-filter=".tea">Coffes & Teas</li>
-                    <li data-filter=".pet"> Pet Foods</li>
-                    <li data-filter=".veg">Vegetables</li>
+                    @foreach ($categories as $category)
+                        <li data-filter=".{{ Str::slug($category->name) }}">{{ $category->name }}</li>
+                    @endforeach
                 </ul>
             </div>
-            {{-- <div class="filter-items row gy-4"> --}}
             <div class="row gx-3 gy-4 filter-items">
                 @foreach ($products as $product)
-                    <div class="col-xl-2 col-lg-3 col-md-6 single-item veg tea">
+                    <div class="col-xl-2 col-lg-3 col-md-6 single-item {{ Str::slug($product->category->name) }}">
                         <div class="product-item product-item-2">
                             <div class="time"><span>Delivery 9 MINS</span></div>
                             <ul class="product-list">
@@ -278,15 +277,14 @@
                                 <li><a href="#"><i class="fa-solid fa-arrow-right-arrow-left"></i></a></li>
                             </ul>
                             <div class="product-thumb">
-                                <img src="{{ asset('storage/' . $product->product_display_image) }}" alt="{{ $product->name }}">
+                                <img src="{{ asset('storage/' . $product->product_display_image) }}"
+                                    alt="{{ $product->name }}">
                             </div>
                             <div class="product-content">
                                 <span class="category">{{ $product->category->name }}</span>
                                 <h3 class="title">
-                                    {{-- <a href="{{ route('product.details', ['category' => $category->slug, 'product_name' => $product->slug]) }}">
-                                        {{ $product->name }}
-                                    </a> --}}
-                                    <a href="{{ route('product.details', ['category' => $product->category->slug, 'product_name' => $product->slug]) }}">
+                                    <a
+                                        href="{{ route('product.details', ['category' => $product->category->slug, 'product_name' => $product->slug]) }}">
                                         {{ $product->name }}
                                     </a>
                                 </h3>
@@ -297,11 +295,11 @@
                             </div>
                             <div class="product-bottom">
                                 {{-- <a href="{{ route('cart.add', $product->id) }}">Add To Cart</a> --}}
+                                <a href="#">Add To Cart</a>
                             </div>
                         </div>
                     </div>
                 @endforeach
-
             </div>
         </div>
     </section>
