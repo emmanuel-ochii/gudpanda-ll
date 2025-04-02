@@ -5415,7 +5415,7 @@ START: Blog CSS
   margin-right: 15px;
 }
 .product-top-content .project-filter li.active {
-  color: var(--rr-color-theme-green);
+  color: var(--rr-color-theme-primary);
 }
 
 .product-item-wrap {
@@ -5577,8 +5577,8 @@ START: Blog CSS
   border-bottom: 1px solid rgba(26, 26, 26, 0.08);
 }
 .product-content .category {
-  background: rgba(103, 176, 46, 0.1);
-  color: var(--rr-color-theme-green);
+  background: rgba(176,46,46,.1);
+  color: var(--rr-color-theme-primary);
   font-size: 10px;
   font-weight: 500;
   border-radius: 4px;
@@ -5640,7 +5640,7 @@ START: Blog CSS
 }
 .product-item-2 .product-bottom a {
   display: block;
-  background-color: var(--rr-color-theme-green);
+  background-color: var(--bs-black);
   color: var(--rr-color-common-white);
   padding: 10px 15px;
   font-weight: 500;

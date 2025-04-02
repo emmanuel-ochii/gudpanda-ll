@@ -12,13 +12,17 @@ class GuestController extends Controller
     {
         $categories = Category::withCount('products')->get();
 
-        return view('Pages.Frontend.home', compact('categories'));
+        // Fetch latest active products (limit for performance)
+        // $products = Product::where('status', 'active')->latest()->take(12)->get();
+        $products = Product::latest()->take(12)->get();
+
+        return view('Pages.Frontend.home', compact('categories', 'products'));
     }
 
     public function categoryProducts($slug)
     {
         // Find category by slug for better SEO
-    $category = Category::where('slug', $slug)->firstOrFail();
+        $category = Category::where('slug', $slug)->firstOrFail();
 
         // Fetch only active products for optimization
         $products = $category->products()->paginate(12);

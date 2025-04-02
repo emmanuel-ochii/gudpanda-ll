@@ -102,10 +102,10 @@
                                 </div>
                                 <span class="price">
                                     @if ($product->discount_price)
-                                        <span class="offer">${{ number_format($product->price, 2) }}</span>
-                                        ${{ number_format($product->discount_price, 2) }}
+                                        <span class="offer">₦{{ number_format($product->price, 2) }}</span>
+                                       ₦{{ number_format($product->discount_price, 2) }}
                                     @else
-                                        ${{ number_format($product->price, 2) }}
+                                       ₦{{ number_format($product->price, 2) }}
                                     @endif
                                 </span>
                             </div>

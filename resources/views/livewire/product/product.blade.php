@@ -409,7 +409,7 @@
             allowReorder: true,
             maxFiles: 5,
             maxFileSize: '2MB',
-            acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+            acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'],
             labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse Images </span>',
             server: {
                 process: (fieldName, file, metadata, load, error, progress, abort) => {
