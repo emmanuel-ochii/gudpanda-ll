@@ -308,7 +308,7 @@
     <section class="product-deal bg-grey pb-60">
         <div class="container">
             <div class="section-heading heading-2 mb-40">
-                <h2 class="section-title mb-0">Deal of the month</h2>
+                <h2 class="section-title mb-0"> Available Bids </h2>
             </div>
             <div class="row gy-lg-0 gy-4 justify-content-center">
                 <div class="col-lg-4 col-md-6">

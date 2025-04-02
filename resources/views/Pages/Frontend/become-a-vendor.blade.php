@@ -68,7 +68,7 @@
 
                 <div class="col-lg-6 col-md-12">
                     <div class="about-img">
-                        <img src="{{asset('guest/img/images/about-img-1.jpg')}}" alt="about">
+                        <img src="{{asset('guest/img/images/become-a-vendor.jpg')}}" alt="about">
                         <div class="play-btn">
                             <a class="video-popup" data-autoplay="true" data-vbtype="video"
                                 href="https://youtu.be/Dngwk0BBLmw?feature=shared">
@@ -86,5 +86,5 @@
     </section>
     <!-- ./ about-section -->
 
-    
+
 @endsection
