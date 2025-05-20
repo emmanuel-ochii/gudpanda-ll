@@ -36,7 +36,8 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
 });
 
 Route::prefix('customer')->middleware(['auth', 'role:customer'])->controller(CustomerController::class)->group(function () {
-    Route::get('/', 'dashboard')->name('customer.dashboard');
+    Route::get('/', 'dashboard')->name(name: 'customer.dashboard');
+    Route::get('/saved-items', 'savedItems')->name('customer.savedItems');
 });
 
 Route::prefix('manager')->middleware(['auth', 'role:manager'])->controller(ManagerController::class)->group(function () {

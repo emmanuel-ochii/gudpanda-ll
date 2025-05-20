@@ -88,7 +88,7 @@ class GuestController extends Controller
         // Fetch all active products with their category and paginate for performance
         $products = Product::with('category')
             ->latest()
-            ->paginate(4);
+            ->paginate(12);
 
         return view('Pages.Frontend.shop', compact('products'));
     }

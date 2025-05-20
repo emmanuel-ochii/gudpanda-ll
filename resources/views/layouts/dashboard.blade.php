@@ -750,7 +750,7 @@
                                     <a class="sub-nav-link" href="#"> All Items</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="route('admin.usedItems')"> Used Items </a>
+                                    <a class="sub-nav-link" href="#"> Used Items </a>
                                 </li>
                                 <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="#"> Free Items </a>
@@ -760,6 +760,9 @@
                                 </li>
                                 <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="#"> Bid Items </a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="{{route('customer.savedItems')}}"> Saved Items </a>
                                 </li>
                             </ul>
                         </div>
@@ -984,7 +987,6 @@
         <!-- Start right Content here -->
 
         <div class="page-content">
-
 
 
             @yield('content')

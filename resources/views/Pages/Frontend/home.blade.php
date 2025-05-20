@@ -280,7 +280,7 @@
                                 <h3 class="title">
                                     <a
                                         href="{{ route('product.details', ['category' => $product->category->slug, 'product_name' => $product->slug]) }}">
-                                        {{ $product->name }}
+                                        {{ \Illuminate\Support\Str::limit($product->name, 23) }}
                                     </a>
                                 </h3>
                                 <span class="price">₦{{ number_format($product->price, 2) }}
@@ -300,7 +300,7 @@
     <!-- ./ popular-product -->
 
     {{-- Available bids --}}
-    <section class="product-deal bg-grey pb-60">
+    {{-- <section class="product-deal bg-grey pb-60">
         <div class="container">
             <div class="section-heading heading-2 mb-40">
                 <h2 class="section-title mb-0"> Available Bids </h2>
@@ -517,7 +517,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ./ product-deal -->
 
     {{-- <section class="product-tab-section pt-60 pb-60">

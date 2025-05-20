@@ -10,4 +10,8 @@ class CustomerController extends Controller
     {
         return view('Pages.Customer.dashboard');
     }
+    public function savedItems()
+    {
+        return view('Pages.Customer.saved-items');
+    }
 }
