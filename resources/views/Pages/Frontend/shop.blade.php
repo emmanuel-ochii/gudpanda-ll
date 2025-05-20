@@ -92,15 +92,11 @@
 
             <!-- Pagination -->
             <ul class="pagination-wrap justify-content-center mt-50">
-                {{ $products->links() }}
-            </ul>
+                {{-- {{ $products->links() }} --}}
 
-            {{-- <ul class="pagination-wrap justify-content-center mt-50">
-                <li><a href="#">1</a></li>
-                <li><a href="#" class="active">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#"><i class="fa-regular fa-chevrons-right"></i></a></li>
-            </ul> --}}
+                {{ $products->links('components.pagination.default') }}
+
+            </ul>
         </div>
 
     </section>
