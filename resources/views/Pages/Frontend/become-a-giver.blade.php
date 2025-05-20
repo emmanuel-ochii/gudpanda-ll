@@ -60,13 +60,13 @@
                             Feel Good, Do Good
                         </div>
                     </div>
-                    <a href="{{route('vendor.register')}}" class="rr-primary-btn about-btn" wire:navigate> Get Started as a Vendor </a>
+                    <a href="{{route('vendor.register')}}" class="rr-primary-btn about-btn" wire:navigate> Get Started as a Giver </a>
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-12">
                 <div class="about-img">
-                    <img src="{{asset('guest/img/images/Vendor-page.jpg')}}" alt="about">
+                    <img src="{{asset('guest/img/images/3957610.png')}}" alt="about">
                     <div class="play-btn">
                         <a class="video-popup" data-autoplay="true" data-vbtype="video"
                             href="https://youtu.be/Dngwk0BBLmw?feature=shared">

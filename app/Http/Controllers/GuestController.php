@@ -15,8 +15,8 @@ class GuestController extends Controller
         // Fetch latest active products (limit for performance)
         // $products = Product::where('status', 'active')->latest()->take(12)->get();
         $products = Product::with('category')->latest()
-        ->take(12)
-        ->get();
+            ->take(12)
+            ->get();
 
         return view('Pages.Frontend.home', compact('categories', 'products'));
     }
@@ -43,6 +43,16 @@ class GuestController extends Controller
                 $q->where('name', 'LIKE', "%{$query}%");
             })
             ->get();
+
+        // Optional Optimization for Query
+        // If your product listing grows, consider paginating:
+        // $products = Product::with('category')
+        //     ->where('name', 'LIKE', "%{$query}%")
+        //     ->orWhere('tags', 'LIKE', "%{$query}%")
+        //     ->orWhereHas('category', function ($q) use ($query) {
+        //         $q->where('name', 'LIKE', "%{$query}%");
+        //     })
+        //     ->paginate(12);
 
         return view('Pages.Frontend.search', compact('products', 'query'));
     }
@@ -75,7 +85,12 @@ class GuestController extends Controller
 
     public function shop()
     {
-        return view('Pages.Frontend.shop');
+        // Fetch all active products with their category and paginate for performance
+        $products = Product::with('category')
+            ->latest()
+            ->paginate(4);
+
+        return view('Pages.Frontend.shop', compact('products'));
     }
 
     public function faq()

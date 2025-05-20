@@ -67,11 +67,7 @@ new #[Layout('layouts.auth')] class extends Component {
 
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-4" :status="session('status')" />
-                {{-- @if ($status)
-                    <div {{ $attributes->merge(['class' => 'alert alert-success']) }}>
-                        {{ $status }}
-                    </div>
-                @endif --}}
+               
 
                 <form wire:submit="login" class="login-form">
 

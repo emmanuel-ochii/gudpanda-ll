@@ -104,8 +104,8 @@
                                 </div>
                                 <h4 class="price">
                                     ₦{{ number_format($product->price, 2) }}
-                                    @if ($product->original_price)
-                                        <span>₦{{ number_format($product->original_price, 2) }}</span>
+                                    @if ($product->discount_price)
+                                        <span>₦{{ number_format($product->discount_price, 2) }}</span>
                                     @endif
                                 </h4>
                                 <div class="product-desc-wrap">

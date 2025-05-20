@@ -5,6 +5,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 // Route::view('/', 'welcome');
 
@@ -63,9 +64,27 @@ Route::prefix('vendor')->middleware(['auth', 'role:vendor'])->controller(VendorC
     Route::get('/couponManagement', 'couponManagement')->name('vendor.couponManagement');
 });
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// Route::view('dashboard', 'dashboard')
+//     ->middleware(['auth', 'verified'])
+//     ->name('dashboard');
+
+Route::get('/dashboard', function () {
+    $user = Auth::user();
+
+    if (!$user) {
+        return redirect()->route('login');
+    }
+
+    if ($user->role === \App\Models\User::ROLE_ADMIN) {
+        return redirect()->route('admin.dashboard');
+    } elseif ($user->role === \App\Models\User::ROLE_MANAGER) {
+        return redirect()->route('manager.dashboard');
+    } elseif ($user->role === \App\Models\User::ROLE_VENDOR) {
+        return redirect()->route('vendor.dashboard');
+    } else {
+        return redirect()->route('customer.dashboard');
+    }
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

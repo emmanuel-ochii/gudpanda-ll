@@ -11,7 +11,7 @@
                 <h1 class="title">Shop</h1>
                 <h4 class="sub-title">
                     <span class="home">
-                        <a href="{{route('guest.home')}}">
+                        <a href="{{ route('guest.home') }}">
                             <span>Home</span>
                         </a>
                     </span>
@@ -28,246 +28,81 @@
     <section class="shop-grid-2 pt-100 pb-100">
         <div class="container">
             <div class="row gy-4">
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="shop-item">
-                        <div class="shop-thumb">
-                            <div class="overlay"></div>
-                            <img src="{{asset('guest/img/shop/shop-1.png')}}" alt="shop">
-                            <span class="sale">New</span>
-                            <ul class="shop-list">
-                                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-eye"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="shop-content">
-                            <span class="category">Levi’s Cotton</span>
-                            <h3 class="title"><a href="shop-details.html">Monica Diara Party Dress</a></h3>
-                            <div class="review-wrap">
-                                <ul class="review">
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
+                @forelse ($products as $product)
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="shop-item">
+                            <div class="shop-thumb">
+                                <div class="overlay"></div>
+                                <img src="{{ asset('storage/' . $product->product_display_image) }}" alt="{{ $product->name }}">
+                                <span class="sale">New</span>
+
+                                <ul class="shop-list">
+                                    <li>
+                                        <a href="#"><i class="fa-regular fa-cart-shopping"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-light fa-heart"></i></a>
+                                    </li>
+                                    <li>
+                                        <!-- Eye icon linking to product detail page -->
+                                        <a
+                                            href="{{ route('product.details', [$product->category->slug, $product->slug]) }}">
+                                            <i class="fa-light fa-eye"></i>
+                                        </a>
+                                    </li>
                                 </ul>
-                                <span>(15 Reviews)</span>
+
                             </div>
-                            <span class="price"> <span class="offer">₦250.00</span>₦157.00</span>
+                            <div class="shop-content">
+                                <span class="category">{{ $product->category->name }}</span>
+                                <h3 class="title" title="{{ $product->name }}">
+                                    <a href="{{ route('product.details', [$product->category->slug, $product->slug]) }}" >
+                                        {{-- {{ $product->name }} --}}
+                                        {{ \Illuminate\Support\Str::limit($product->name, 50) }}
+                                    </a>
+                                </h3>
+                                <div class="review-wrap">
+                                    <ul class="review">
+                                        @for ($i = 0; $i < 5; $i++)
+                                            <li>
+                                                <i
+                                                    class="fa-solid fa-star {{ $i < $product->rating ? 'text-warning' : '' }}"></i>
+                                            </li>
+                                        @endfor
+                                    </ul>
+                                    <span>({{ $product->reviews_count ?? 0 }} Reviews)</span>
+                                </div>
+                                <span class="price">
+                                    @if ($product->discount_price)
+                                        <span class="offer">₦{{ number_format($product->discount_price, 2) }}</span>
+                                        ₦{{ number_format($product->price, 2) }}
+                                    @else
+                                        ₦{{ number_format($product->price, 2) }}
+                                    @endif
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="shop-item">
-                        <div class="shop-thumb">
-                            <div class="overlay"></div>
-                            <img src="guest/img/shop/shop-2.png" alt="shop">
-                            <span class="sale">New</span>
-                            <ul class="shop-list">
-                                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-eye"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="shop-content">
-                            <span class="category">Levi’s Cotton</span>
-                            <h3 class="title"><a href="shop-details.html">Onima Black Flower Sandal</a></h3>
-                            <div class="review-wrap">
-                                <ul class="review">
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                </ul>
-                                <span>(15 Reviews)</span>
-                            </div>
-                            <span class="price"> <span class="offer">₦450.00</span>₦257.00</span>
-                        </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <p class="alert alert-warning">No products available in the shop at the moment.</p>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="shop-item">
-                        <div class="shop-thumb">
-                            <div class="overlay"></div>
-                            <img src="guest/img/shop/shop-3.png" alt="shop">
-                            <span class="sale">New</span>
-                            <ul class="shop-list">
-                                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-eye"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="shop-content">
-                            <span class="category">Levi’s Cotton</span>
-                            <h3 class="title"><a href="shop-details.html">Poncho Sweater international</a></h3>
-                            <div class="review-wrap">
-                                <ul class="review">
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                </ul>
-                                <span>(15 Reviews)</span>
-                            </div>
-                            <span class="price"> <span class="offer">₦550.00</span>₦427.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="shop-item">
-                        <div class="shop-thumb">
-                            <div class="overlay"></div>
-                            <img src="guest/img/shop/shop-7.png" alt="shop">
-                            <span class="sale">New</span>
-                            <ul class="shop-list">
-                                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-eye"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="shop-content">
-                            <span class="category">Levi’s Cotton</span>
-                            <h3 class="title"><a href="shop-details.html">D’valo Office Cotton Suite</a></h3>
-                            <div class="review-wrap">
-                                <ul class="review">
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                </ul>
-                                <span>(15 Reviews)</span>
-                            </div>
-                            <span class="price"> <span class="offer">₦350.00</span>₦257.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="shop-item">
-                        <div class="shop-thumb">
-                            <div class="overlay"></div>
-                            <img src="guest/img/shop/shop-8.png" alt="shop">
-                            <span class="sale">New</span>
-                            <ul class="shop-list">
-                                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-eye"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="shop-content">
-                            <span class="category">Levi’s Cotton</span>
-                            <h3 class="title"><a href="shop-details.html">D’valo Office Cotton Suite</a></h3>
-                            <div class="review-wrap">
-                                <ul class="review">
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                </ul>
-                                <span>(15 Reviews)</span>
-                            </div>
-                            <span class="price"> <span class="offer">₦350.00</span>₦257.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="shop-item">
-                        <div class="shop-thumb">
-                            <div class="overlay"></div>
-                            <img src="guest/img/shop/shop-9.png" alt="shop">
-                            <span class="sale">New</span>
-                            <ul class="shop-list">
-                                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-eye"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="shop-content">
-                            <span class="category">Levi’s Cotton</span>
-                            <h3 class="title"><a href="shop-details.html">D’valo Office Cotton Suite</a></h3>
-                            <div class="review-wrap">
-                                <ul class="review">
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                </ul>
-                                <span>(15 Reviews)</span>
-                            </div>
-                            <span class="price"> <span class="offer">₦350.00</span>₦257.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="shop-item">
-                        <div class="shop-thumb">
-                            <div class="overlay"></div>
-                            <img src="guest/img/shop/shop-10.png" alt="shop">
-                            <span class="sale">New</span>
-                            <ul class="shop-list">
-                                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-eye"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="shop-content">
-                            <span class="category">Levi’s Cotton</span>
-                            <h3 class="title"><a href="shop-details.html">D’valo Office Cotton Suite</a></h3>
-                            <div class="review-wrap">
-                                <ul class="review">
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                </ul>
-                                <span>(15 Reviews)</span>
-                            </div>
-                            <span class="price"> <span class="offer">₦350.00</span>₦257.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="shop-item">
-                        <div class="shop-thumb">
-                            <div class="overlay"></div>
-                            <img src="guest/img/shop/shop-11.png" alt="shop">
-                            <span class="sale">New</span>
-                            <ul class="shop-list">
-                                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa-light fa-eye"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="shop-content">
-                            <span class="category">Levi’s Cotton</span>
-                            <h3 class="title"><a href="shop-details.html">D’valo Office Cotton Suite</a></h3>
-                            <div class="review-wrap">
-                                <ul class="review">
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                    <li><i class="fa-solid fa-star"></i></li>
-                                </ul>
-                                <span>(15 Reviews)</span>
-                            </div>
-                            <span class="price"> <span class="offer">₦350.00</span>₦257.00</span>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
+
+            <!-- Pagination -->
             <ul class="pagination-wrap justify-content-center mt-50">
+                {{ $products->links() }}
+            </ul>
+
+            {{-- <ul class="pagination-wrap justify-content-center mt-50">
                 <li><a href="#">1</a></li>
                 <li><a href="#" class="active">2</a></li>
                 <li><a href="#">3</a></li>
                 <li><a href="#"><i class="fa-regular fa-chevrons-right"></i></a></li>
-            </ul>
+            </ul> --}}
         </div>
+
     </section>
     <!-- ./ shop-grid -->
 @endsection
