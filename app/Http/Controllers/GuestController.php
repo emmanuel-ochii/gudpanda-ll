@@ -93,6 +93,11 @@ class GuestController extends Controller
         return view('Pages.Frontend.shop', compact('products'));
     }
 
+    public function myCart()
+    {
+        return view('Pages.Frontend.my-cart');
+    }
+
     public function faq()
     {
         return view('Pages.Frontend.faq');

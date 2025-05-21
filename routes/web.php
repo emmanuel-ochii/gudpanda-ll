@@ -17,10 +17,11 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
 
     Route::get('/product/{category}/{product_name}', 'showItem')->name('product.details');
 
+    Route::get('my-cart', 'myCart')->name('guest.myCart');
 
 
 
-    Route::get('bid', 'bid')->name('guest.bid');;
+    Route::get('bid', 'bid')->name('guest.bid');
     Route::get('contact', 'contact')->name('guest.contact');
     Route::get('about', 'about')->name('guest.about');
     Route::get('shop', 'shop')->name('guest.shop');
