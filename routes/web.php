@@ -18,6 +18,7 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
     Route::get('/product/{category}/{product_name}', 'showItem')->name('product.details');
 
     Route::get('my-cart', 'myCart')->name('guest.myCart');
+    Route::get('checkout', 'checkout')->name('guest.checkout');
 
 
 
