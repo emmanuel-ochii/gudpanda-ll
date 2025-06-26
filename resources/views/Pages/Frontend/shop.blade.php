@@ -33,12 +33,15 @@
                         <div class="shop-item">
                             <div class="shop-thumb">
                                 <div class="overlay"></div>
-                                <img src="{{ asset('storage/' . $product->product_display_image) }}" alt="{{ $product->name }}">
+                                <img src="{{ asset('storage/' . $product->product_display_image) }}"
+                                    alt="{{ $product->name }}">
                                 <span class="sale">New</span>
 
                                 <ul class="shop-list">
                                     <li>
-                                        <a href="#"><i class="fa-regular fa-cart-shopping"></i></a>
+
+                                          @livewire('add-to-cart', ['productId' => $product->id, 'show' => 'icon'], key('icon-'.$product->id))
+                                          
                                     </li>
                                     <li>
                                         <a href="#"><i class="fa-light fa-heart"></i></a>
@@ -56,7 +59,7 @@
                             <div class="shop-content">
                                 <span class="category">{{ $product->category->name }}</span>
                                 <h3 class="title" title="{{ $product->name }}">
-                                    <a href="{{ route('product.details', [$product->category->slug, $product->slug]) }}" >
+                                    <a href="{{ route('product.details', [$product->category->slug, $product->slug]) }}">
                                         {{-- {{ $product->name }} --}}
                                         {{ \Illuminate\Support\Str::limit($product->name, 50) }}
                                     </a>

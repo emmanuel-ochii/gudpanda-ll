@@ -63,12 +63,14 @@
                      <ul class="contact-item-list">
                          <li><a href="/login" class="login-btn" wire:navigate>Login / Register</a></li>
                          <li>
-                             <div class="header-cart-btn" style="background-color: #E53E3E">
+                             {{-- <div class="header-cart-btn" style="background-color: #E53E3E">
                                  <a href="{{route('guest.myCart')}}" class="icon">
                                      <i class="fa-light fa-bag-shopping"></i>
                                  </a>
                                  <span>₦0.00</span>
-                             </div>
+                             </div> --}}
+
+                             @livewire('cart-icon')
                          </li>
                      </ul>
                  </div>

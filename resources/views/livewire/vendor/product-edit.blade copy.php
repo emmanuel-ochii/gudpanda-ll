@@ -268,6 +268,7 @@
         });
     </script>
 
+<!-- Tags -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tagsInput = document.getElementById('product-tags');

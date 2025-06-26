@@ -24,7 +24,7 @@
     </section>
     <!-- ./ page-header -->
 
-    <section class="cart-section pt-130 pb-130">
+    {{-- <section class="cart-section pt-130 pb-130">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -136,6 +136,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
+    @livewire('my-cart')
     <!-- ./ cart-section -->
 @endsection

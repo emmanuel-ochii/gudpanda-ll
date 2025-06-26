@@ -90,7 +90,6 @@ class Product extends Component
 
     public function saveProduct()
     {
-        // dd(vars: $this->weight);
 
         $this->validate([
             'name'                     => 'required|string|max:255',

@@ -289,7 +289,9 @@
                             </div>
                             <div class="product-bottom">
                                 {{-- <a href="{{ route('cart.add', $product->id) }}">Add To Cart</a> --}}
-                                <a href="#">Add To Cart</a>
+                                @livewire('add-to-cart', ['productId' => $product->id, 'show' => 'text'], key('text-'.$product->id))
+
+                                {{-- @livewire('add-to-cart', ['productId' => $product->id], key($product->id)) --}}
                             </div>
                         </div>
                     </div>
