@@ -10,22 +10,30 @@ class CartIcon extends Component
     public $totalCount = 0;
     public $totalPrice = 0;
 
-    // protected $listeners = ['cartUpdated' => 'mount'];
     protected $listeners = ['cartUpdated' => 'updateCart'];
 
-    // public function mount()
-    // {
-    //     $cart = session()->get('cart', []);
-    //     $this->totalCount = collect($cart)->sum('quantity');
-    //     $this->totalPrice = collect($cart)->sum(fn($item) => $item['price'] * $item['quantity']);
-    // }
+
+    public function mount()
+    {
+        $this->loadCartData();
+    }
+
+    public function hydrate()
+    {
+        $this->loadCartData();
+    }
 
     public function updateCart()
-{
-    $cart = session()->get('cart', []);
-    $this->totalCount = collect($cart)->sum('quantity');
-    $this->totalPrice = collect($cart)->sum(fn($item) => $item['price'] * $item['quantity']);
-}
+    {
+        $this->loadCartData();
+    }
+
+    private function loadCartData()
+    {
+        $cart = session()->get('cart', []);
+        $this->totalCount = collect($cart)->sum('quantity');
+        $this->totalPrice = collect($cart)->sum(fn($item) => $item['price'] * $item['quantity']);
+    }
 
     public function render()
     {

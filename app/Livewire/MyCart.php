@@ -13,6 +13,28 @@ class MyCart extends Component
         $this->cart = session()->get('cart', []);
     }
 
+    public function increaseQty($id)
+    {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            $this->cart = $cart;
+            $this->dispatch('cartUpdated');
+        }
+    }
+
+    public function decreaseQty($id)
+    {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id]) && $cart[$id]['quantity'] > 1) {
+            $cart[$id]['quantity']--;
+            session()->put('cart', $cart);
+            $this->cart = $cart;
+            $this->dispatch('cartUpdated');
+        }
+    }
+
     public function removeItem($id)
     {
         $cart = session()->get('cart');
@@ -20,7 +42,7 @@ class MyCart extends Component
         session()->put('cart', $cart);
         $this->cart = $cart;
 
-         $this->dispatch('cartUpdated');
+        $this->dispatch('cartUpdated');
     }
 
     public function render()

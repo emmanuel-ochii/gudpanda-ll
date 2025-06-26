@@ -8,6 +8,7 @@
                             <p>Add <span>$59.69</span> to cart and get free shipping</p>
                             <div class="line"></div>
                         </div>
+
                         <div class="table-content cart-table">
                             <table class="table mb-0">
                                 <thead>
@@ -44,13 +45,20 @@
                                                     ₦{{ number_format($item['price'], 2) }} </span></td>
                                             <td class="product-quantity">
 
-                                                {{ $item['quantity'] }}
-
+                                                {{-- {{ $item['quantity'] }} --}}
                                                 {{-- To increase number the item  --}}
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <button wire:click="decreaseQty({{ $id }})"
+                                                        class="btn btn-sm btn-outline-secondary">-</button>
+                                                    <span>{{ $item['quantity'] }}</span>
+                                                    <button wire:click="increaseQty({{ $id }})"
+                                                        class="btn btn-sm btn-outline-secondary">+</button>
+                                                </div>
 
                                                 {{-- <div class="quantity__group">
-                                            <input type="number" class="input-text qty text" name="quantity" value="1"
-                                                min="1" max="100" step="1" autocomplete="off">
+                                                    <input type="number" class="input-text qty text" name="quantity"
+                                                        value="1" min="1" max="100" step="1"
+                                                        autocomplete="off">
                                                 </div> --}}
                                             </td>
                                             <td class="product-subtotal">
