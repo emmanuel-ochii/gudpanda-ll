@@ -22,16 +22,22 @@
                                 <tbody>
                                     @foreach ($cart as $id => $item)
                                         <tr>
-                                            <td class="product-remove"><button
-                                                    wire:click="removeItem({{ $id }})"><i
-                                                        class="fa-sharp fa-regular fa-xmark"></i></button>
+                                            <td class="product-remove">
+                                                <button wire:click="removeItem({{ $id }})"> <i
+                                                        class="fa-sharp fa-regular fa-xmark"></i> </button>
                                             </td>
                                             <td class="product-thumbnail">
-                                                <a href="shop-details.html">
+                                                <a
+                                                    href="{{ route('product.details', [$item['category_slug'], $item['slug']]) }}">
                                                     <img src="{{ asset('storage/' . $item['image']) }}" width="50">
                                                 </a>
                                                 <div class="product-thumbnail">
-                                                    <h4 class="title"> {{ $item['name'] }} </h4>
+                                                    <h4 class="title">
+                                                        <a
+                                                            href="{{ route('product.details', [$item['category_slug'], $item['slug']]) }}">
+                                                            {{ $item['name'] }}
+                                                        </a>
+                                                    </h4>
                                                 </div>
                                             </td>
                                             <td class="product-price"><span class="amount">
@@ -45,9 +51,10 @@
                                                 {{-- <div class="quantity__group">
                                             <input type="number" class="input-text qty text" name="quantity" value="1"
                                                 min="1" max="100" step="1" autocomplete="off">
-                                        </div> --}}
+                                                </div> --}}
                                             </td>
-                                            <td class="product-subtotal"><span
+                                            <td class="product-subtotal">
+                                                <span
                                                     class="amount">₦{{ number_format($item['price'] * $item['quantity'], 2) }}</span>
                                             </td>
                                         </tr>
@@ -103,7 +110,7 @@
                             <a href="checkout.html" class="rr-primary-btn checkout-btn">Proceed to Checkout</a>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>

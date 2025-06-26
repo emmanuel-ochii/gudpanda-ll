@@ -13,10 +13,10 @@ class AddToCart extends Component
 
 
     public function mount($productId, $show = 'icon')
-{
-    $this->productId = $productId;
-    $this->show = $show;
-}
+    {
+        $this->productId = $productId;
+        $this->show = $show;
+    }
 
     public function addToCart()
     {
@@ -32,6 +32,8 @@ class AddToCart extends Component
                 'price' => $product->discount_price ?? $product->price,
                 'quantity' => 1,
                 'image' => $product->product_display_image,
+                'slug' => $product->slug,
+                'category_slug' => $product->category->slug,
             ];
         }
 
