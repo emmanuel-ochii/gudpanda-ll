@@ -118,7 +118,7 @@
                             </div>
                         </div>
                         <div class="checkout-proceed">
-                            <a href="checkout.html" class="rr-primary-btn checkout-btn">Proceed to Checkout</a>
+                            <a href="{{route('guest.checkout')}}" class="rr-primary-btn checkout-btn">Proceed to Checkout</a>
                         </div>
                     </div>
 
