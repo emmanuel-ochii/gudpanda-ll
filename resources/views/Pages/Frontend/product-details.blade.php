@@ -110,7 +110,8 @@
                                 </h4>
                                 <div class="product-desc-wrap">
                                     <p class="desc"> {!! nl2br(e($product->description)) !!} </p>
-                                    <span class="view-text"><i class="fa-sharp fa-regular fa-eye"></i> {{ rand(10, 100) }} people are viewing this right now </span>
+                                    <span class="view-text"><i class="fa-sharp fa-regular fa-eye"></i> {{ rand(10, 100) }}
+                                        people are viewing this right now </span>
                                 </div>
                                 <div class="item-left-line">
                                     <span>Only {{ $product->stock }} items left in stock!</span>
@@ -127,8 +128,9 @@
                                     <input type="number" name="age" id="age" min="1" max="100"
                                         step="1" value="1">
                                 </form>
-                                <div class="cart-btn-wrap-2"><a href="#" class="rr-primary-btn cart-btn">Add To
-                                        Cart</a></div>
+                                <div class="cart-btn-wrap-2">
+                                    <a wire:click.prevent="addToCart" href="#" class="rr-primary-btn cart-btn"> Add To Cart </a>
+                                </div>
                             </div>
                             <a href="#" class="shop-details-btn rr-primary-btn">Buy The Item Now</a>
                             <ul class="product-meta">

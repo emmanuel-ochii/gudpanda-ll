@@ -86,23 +86,26 @@
                             </div>
                             <div class="checkout-top checkout-item">
                                 <h4 class="title">Subtotal</h4>
-                                <span class="price">$1100.00</span>
+                                <span class="price">₦{{ number_format($this->subtotal, 2) }}</span>
                             </div>
                             <div class="checkout-shipping checkout-item">
                                 <h4 class="title">Shipping</h4>
                                 <div class="shipping-right">
                                     <div class="checkout-option-wrapper">
                                         <div class="shipping-option">
-                                            <input id="flat_rate" type="radio" name="shipping">
-                                            <label for="flat_rate">Free Shipping</label>
+                                            <input id="free_shipping" type="radio" value="free_shipping"
+                                                wire:model="selectedShipping">
+                                            <label for="free_shipping">Free Shipping</label>
                                         </div>
                                         <div class="shipping-option">
-                                            <input id="local_pickup" type="radio" name="shipping">
-                                            <label for="local_pickup">Flat Rate</label>
+                                            <input id="flat_rate" type="radio" value="flat_rate"
+                                                wire:model="selectedShipping">
+                                            <label for="flat_rate">Flat Rate (₦1500)</label>
                                         </div>
                                         <div class="shipping-option">
-                                            <input id="free_shipping" type="radio" name="shipping">
-                                            <label for="free_shipping">Local Pickup</label>
+                                            <input id="local_pickup" type="radio" value="local_pickup"
+                                                wire:model="selectedShipping">
+                                            <label for="local_pickup">Local Pickup (₦500)</label>
                                         </div>
                                     </div>
                                     <p>Shipping options will be updated <br> during checkout</p>
@@ -111,7 +114,7 @@
                             </div>
                             <div class="checkout-total checkout-item">
                                 <h4 class="title">Total</h4>
-                                <span>$724</span>
+                                <span>₦{{ number_format($this->total, 2) }}</span>
                             </div>
                         </div>
                         <div class="checkout-proceed">

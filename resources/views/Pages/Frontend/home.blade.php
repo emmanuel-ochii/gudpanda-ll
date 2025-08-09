@@ -272,8 +272,7 @@
                         <div class="product-item product-item-2">
 
                             <div class="product-thumb">
-                                <img src="{{ asset('storage/' . $product->product_display_image) }}"
-                                    alt="{{ $product->name }}">
+                                <img src="{{ asset('storage/' . $product->product_display_image) }}" alt="{{ $product->name }}">
                             </div>
                             <div class="product-content">
                                 <span class="category">{{ $product->category->name }}</span>
@@ -284,11 +283,10 @@
                                     </a>
                                 </h3>
                                 <span class="price">₦{{ number_format($product->price, 2) }}
-                                    <span class="offer">₦{{ number_format($product->old_price, 2) }}</span>
+                                    <span class="offer">₦{{ number_format($product->discount_price, 2) }}</span>
                                 </span>
                             </div>
                             <div class="product-bottom">
-                                {{-- <a href="{{ route('cart.add', $product->id) }}">Add To Cart</a> --}}
                                 @livewire('add-to-cart', ['productId' => $product->id, 'show' => 'text'], key('text-'.$product->id))
 
                                 {{-- @livewire('add-to-cart', ['productId' => $product->id], key($product->id)) --}}
