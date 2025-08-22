@@ -231,7 +231,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <p>Copyright & Design 2024 <span>© Gudpanda </span>. All Right Reserved</p>
+                            <p>Copyright & Design {{ date('Y') }} <span>© Gudpanda </span>. All Right Reserved</p>
                         </div>
                     </div>
                 </div>
