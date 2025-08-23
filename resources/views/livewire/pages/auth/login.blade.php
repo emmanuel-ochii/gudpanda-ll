@@ -24,15 +24,37 @@ new #[Layout('layouts.auth')] class extends Component {
         // Retrieve the authenticated user
         $user = Auth::user();
 
-        if ($user->role === User::ROLE_ADMIN) {
-            $this->redirectIntended(default: route('admin.dashboard', absolute: false));
-        } elseif ($user->role === User::ROLE_MANAGER) {
-            $this->redirectIntended(default: route('manager.dashboard', absolute: false));
-        } elseif ($user->role === User::ROLE_VENDOR) {
-            $this->redirectIntended(default: route('vendor.dashboard', absolute: false));
-        } else {
-            $this->redirectIntended(default: route('customer.dashboard', absolute: false));
+        // Old fallback working code
+        // if ($user->role === User::ROLE_ADMIN) {
+        //     $fallback = route('admin.dashboard', absolute: false);
+        // } elseif ($user->role === User::ROLE_MANAGER) {
+        //     $fallback = route('manager.dashboard', absolute: false);
+        // } elseif ($user->role === User::ROLE_VENDOR) {
+        //     $fallback = route('vendor.dashboard', absolute: false);
+        // } else {
+        //     $fallback = route('guest.checkout', absolute: false); // customer default
+        // }
+
+        // $this->redirectIntended(default: $fallback);
+
+        // Updated working code
+        // Map roles to their default routes
+        $roleRoutes = [
+            User::ROLE_ADMIN => route('admin.dashboard', absolute: false),
+            User::ROLE_MANAGER => route('manager.dashboard', absolute: false),
+            User::ROLE_VENDOR => route('vendor.dashboard', absolute: false),
+            User::ROLE_CUSTOMER => route('customer.dashboard', absolute: false), // fallback if not coming from checkout
+        ];
+
+        // Determine fallback route based on role
+        $fallback = $roleRoutes[$user->role] ?? route('customer.dashboard', absolute: false);
+
+        // If customer and they were trying to go to checkout before login, redirect there instead
+        if ($user->role === User::ROLE_CUSTOMER && session()->has('intended_url')) {
+            $fallback = session()->pull('intended_url'); // removes it after redirect
         }
+
+        $this->redirectIntended(default: $fallback);
     }
 }; ?>
 
@@ -67,7 +89,7 @@ new #[Layout('layouts.auth')] class extends Component {
 
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-4" :status="session('status')" />
-               
+
 
                 <form wire:submit="login" class="login-form">
 

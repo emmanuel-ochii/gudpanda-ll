@@ -33,8 +33,9 @@ class Checkout extends Component
     {
         // must be logged in
         if (!Auth::check()) {
-            return redirect()->route('login');
-        }
+    session(['intended_url' => route('guest.checkout')]);
+    return redirect()->route('login');
+}
 
         $this->loadCart();
 
