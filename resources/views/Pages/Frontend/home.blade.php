@@ -282,8 +282,8 @@
                                         {{ \Illuminate\Support\Str::limit($product->name, 23) }}
                                     </a>
                                 </h3>
-                                <span class="price">₦{{ number_format($product->price, 2) }}
-                                    <span class="offer">₦{{ number_format($product->discount_price, 2) }}</span>
+                                <span class="price">₦{{ number_format($product->discount_price, 2) }}
+                                    <span class="offer">₦{{ number_format($product->price, 2) }}</span>
                                 </span>
                             </div>
                             <div class="product-bottom">
