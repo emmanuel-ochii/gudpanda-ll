@@ -72,8 +72,11 @@
                         </div>
                         <div class="cart-btn-wrap">
                             <div class="left-item">
-                                <input type="text" class="form-control" placeholder="Coupon Code">
-                                <button class="rr-primary-btn">Apply Coupon</button>
+                                <input type="text" class="form-control" placeholder="Coupon Code"
+                                    wire:model.defer="couponCode">
+                                <button type="button" class="rr-primary-btn" wire:click="applyCoupon">Apply
+                                    Coupon</button>
+
                             </div>
                             <button class="rr-primary-btn update-btn">Update Cart</button>
                         </div>
@@ -84,16 +87,26 @@
                             <div class="checkout-top checkout-item item-1">
                                 <h4 class="title">Cart Totals</h4>
                             </div>
+                            {{-- Coupon --}}
                             <div class="checkout-top checkout-item">
                                 <h4 class="title">Subtotal</h4>
                                 <span class="price">₦{{ number_format($this->subtotal, 2) }}</span>
+
+                                @if ($couponDiscount > 0)
+                                    <div class="checkout-top checkout-item">
+                                        <h4 class="title">Coupon Discount</h4>
+                                        <span class="price text-success">-
+                                            ₦{{ number_format($couponDiscount, 2) }}</span>
+                                    </div>
+                                @endif
                             </div>
+                            {{-- shipping fee --}}
                             <div class="checkout-shipping checkout-item">
                                 <h4 class="title">Shipping</h4>
                                 <div class="shipping-right">
                                     <div class="checkout-option-wrapper">
                                         <div class="shipping-option">
-                                            <input id="free_shipping" type="radio" value="free_shipping"
+                                            <input id="free_shippin" type="radio" value="free_shipping"
                                                 wire:model="selectedShipping">
                                             <label for="free_shipping">Free Shipping</label>
                                         </div>
@@ -111,14 +124,21 @@
                                     <p>Shipping options will be updated <br> during checkout</p>
                                     <span>Calculate Shipping</span>
                                 </div>
+                                <div class="checkout-top checkout-item">
+                                    <h4 class="title">Shipping Fee</h4>
+                                    <span class="price">₦{{ number_format($shippingFee, 2) }}</span>
+                                </div>
                             </div>
+
+                            {{-- Total --}}
                             <div class="checkout-total checkout-item">
                                 <h4 class="title">Total</h4>
                                 <span>₦{{ number_format($this->total, 2) }}</span>
                             </div>
                         </div>
                         <div class="checkout-proceed">
-                            <a href="{{route('guest.checkout')}}" class="rr-primary-btn checkout-btn">Proceed to Checkout</a>
+                            <a href="{{ route('guest.checkout') }}" class="rr-primary-btn checkout-btn">Proceed to
+                                Checkout</a>
                         </div>
                     </div>
 

@@ -34,13 +34,15 @@ class AddToCart extends Component
                 'image' => $product->product_display_image,
                 'slug' => $product->slug,
                 'category_slug' => $product->category->slug,
+                'category_name' => $product->category->name ?? null,
             ];
         }
 
         session()->put('cart', $cart);
 
         // Emit event to update the cart icon
-        $this->dispatch('cartUpdated');
+        // $this->dispatch('cartUpdated');
+        $this->dispatch('cartUpdated')->to(\App\Livewire\Checkout::class);
     }
 
     public function render()

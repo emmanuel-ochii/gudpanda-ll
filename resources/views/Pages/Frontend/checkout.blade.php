@@ -54,7 +54,7 @@
             </div>
 
             <!-- Billing Details -->
-            {{-- @livewire('checkout') --}}
+            @livewire('checkout')
 
         </div>
     </section>

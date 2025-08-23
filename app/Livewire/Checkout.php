@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
@@ -9,10 +9,10 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Coupon;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 
 class Checkout extends Component
 {
-    // Cart & order values
     public $cart = [];
 
     // Billing fields
@@ -36,6 +36,9 @@ class Checkout extends Component
     public $couponDiscount = 0;
     public $appliedCoupon = null;
 
+    public $subtotal = 0;
+    public $total = 0;
+
     // UI
     public $agree_terms = false;
 
@@ -47,11 +50,13 @@ class Checkout extends Component
 
         // Pre-fill shipping fee from session (if any)
         $this->selectedShipping = session()->get('selected_shipping', 'free_shipping');
-        $this->shippingFee = session()->get('shipping_fee', 0);
+        $this->shippingFee =(float) session()->get('shipping_fee', 0);
         $this->couponCode = session()->get('coupon_code', null);
-        $this->couponDiscount = session()->get('coupon_discount', 0);
+        $this->couponDiscount = (float) session()->get('coupon_discount', 0);
     }
 
+
+    #[On('cartUpdated')]
     public function loadCart()
     {
         $this->cart = session()->get('cart', []);
@@ -77,8 +82,22 @@ class Checkout extends Component
 
     public function calculateSubtotal(): float
     {
-        return (float) collect($this->cart)->sum(fn($item) => $item['price'] * $item['quantity']);
+        return (float) collect($this->cart)->sum(
+            fn($item) => $item['price'] * $item['quantity']
+        );
     }
+
+    public function getSubtotalProperty()
+    {
+        return $this->calculateSubtotal();
+    }
+
+    public function getTotalProperty()
+    {
+        $total = $this->subtotal + $this->shippingFee - $this->couponDiscount;
+        return $total > 0 ? round($total, 2) : 0.00;
+    }
+
 
     public function calculateCoupon()
     {
@@ -122,17 +141,6 @@ class Checkout extends Component
         session()->forget('coupon_code');
         session()->forget('coupon_discount');
         session()->forget('coupon_id');
-    }
-
-    public function getSubtotalProperty()
-    {
-        return $this->calculateSubtotal();
-    }
-
-    public function getTotalProperty()
-    {
-        $total = $this->subtotal + $this->shippingFee - $this->couponDiscount;
-        return $total > 0 ? round($total, 2) : 0.00;
     }
 
     protected function rules()
@@ -230,7 +238,6 @@ class Checkout extends Component
             return;
         }
     }
-
     public function render()
     {
         return view('livewire.checkout');

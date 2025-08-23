@@ -7,9 +7,11 @@ use Livewire\Component;
 class MyCart extends Component
 {
     public $cart  = [];
-     public $shippingFee = 0;
+    public $shippingFee = 0;
     public $couponDiscount = 0;
     public $selectedShipping = null;
+    public $couponCode = '';
+    // public $total;
 
     public function mount()
     {
@@ -40,11 +42,16 @@ class MyCart extends Component
 
     public function removeItem($id)
     {
-        $cart = session()->get('cart');
+        $cart = session()->get('cart', []);
         unset($cart[$id]);
-        session()->put('cart', $cart);
-        $this->cart = $cart;
 
+        if (empty($cart)) {
+            session()->forget('cart');
+        } else {
+            session()->put('cart', $cart);
+        }
+
+        $this->cart = $cart;
         $this->dispatch('cartUpdated');
     }
 
@@ -57,14 +64,25 @@ class MyCart extends Component
         } elseif ($value === 'free_shipping') {
             $this->shippingFee = 0;
         }
+
+        // Save to session if you still want persistence
+        session()->put('selected_shipping', $value);
+        session()->put('shipping_fee', $this->shippingFee);
+
+        // 👇 This makes Livewire recalc subtotal/total and update Blade
+        $this->dispatch('$refresh');
     }
 
-    public function applyCoupon($code)
+    public function applyCoupon()
     {
-        // Example: Apply static discount
-        if ($code === 'DISCOUNT10') {
+        if ($this->couponCode === 'DISCOUNT10') {
             $this->couponDiscount = 1000;
+            session()->flash('message', 'Coupon applied successfully: ₦1000 off');
+        } else {
+            $this->couponDiscount = 0;
+            session()->flash('error', 'Invalid coupon code');
         }
+        $this->dispatch('$refresh'); // force totals update
     }
 
     public function getSubtotalProperty()
