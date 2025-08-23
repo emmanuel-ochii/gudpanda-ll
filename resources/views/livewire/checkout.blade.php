@@ -177,7 +177,7 @@
                                     <span class="left-title">Subtotal</span>
                                 </div>
                                 <div class="order-right">
-                                    <span class="right-title">₦{{ number_format($subtotal, 2) }}</span>
+                                    <span class="right-title">₦{{ number_format($this->subtotal, 2) }}</span>
                                 </div>
                             </div>
 
@@ -209,7 +209,7 @@
                             </div>
 
                             {{-- Coupon --}}
-                            <div class="order-item item-1">
+                            {{-- <div class="order-item item-1">
                                 <div class="order-left"><span class="left-title">Coupon</span></div>
                                 <div class="order-right">
                                     <div class="d-flex gap-2">
@@ -230,12 +230,12 @@
                                             (-₦{{ number_format($couponDiscount, 2) }})</div>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="order-item item-1">
                                 <div class="order-left"><span class="left-title">Total Price:</span></div>
                                 <div class="order-right">
-                                    <span class="right-title title-2">₦{{ number_format($total, 2) }}</span>
+                                    <span class="right-title title-2">₦{{ number_format($this->total, 2) }}</span>
                                 </div>
                             </div>
                         </div>

@@ -4,10 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\Coupon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 
@@ -16,59 +14,36 @@ class Checkout extends Component
     public $cart = [];
 
     // Billing fields
-    public $email;
-    public $first_name;
-    public $last_name;
-    public $company;
-    public $country;
-    public $address1;
-    public $address2;
-    public $city;
-    public $state;
-    public $zip;
-    public $phone;
-    public $notes;
+    public $email, $first_name, $last_name, $company, $country, $address1, $address2, $city, $state, $zip, $phone, $notes;
 
-    // Shipping & coupon
-    public $selectedShipping = 'free_shipping'; // default
+    // Shipping
+    public $selectedShipping = 'free_shipping';
     public $shippingFee = 0;
-    public $couponCode = null;
-    public $couponDiscount = 0;
-    public $appliedCoupon = null;
-
-    public $subtotal = 0;
-    public $total = 0;
 
     // UI
     public $agree_terms = false;
-
-    protected $listeners = ['cartUpdated' => 'loadCart'];
-
-    public function mount()
-    {
-        $this->loadCart();
-
-        // Pre-fill shipping fee from session (if any)
-        $this->selectedShipping = session()->get('selected_shipping', 'free_shipping');
-        $this->shippingFee =(float) session()->get('shipping_fee', 0);
-        $this->couponCode = session()->get('coupon_code', null);
-        $this->couponDiscount = (float) session()->get('coupon_discount', 0);
-    }
-
 
     #[On('cartUpdated')]
     public function loadCart()
     {
         $this->cart = session()->get('cart', []);
-        // recalc coupon if present
-        if ($this->couponCode) {
-            $this->calculateCoupon();
+    }
+
+    public function mount()
+    {
+        // must be logged in
+        if (!Auth::check()) {
+            return redirect()->route('login');
         }
+
+        $this->loadCart();
+
+        $this->selectedShipping = session()->get('selected_shipping', 'free_shipping');
+        $this->shippingFee = (float) session()->get('shipping_fee', 0);
     }
 
     public function updatedSelectedShipping($value)
     {
-        // Example rates - adjust to suit (₦)
         $rates = [
             'free_shipping' => 0,
             'flat_rate' => 1500,
@@ -80,69 +55,19 @@ class Checkout extends Component
         session()->put('shipping_fee', $this->shippingFee);
     }
 
-    public function calculateSubtotal(): float
-    {
-        return (float) collect($this->cart)->sum(
-            fn($item) => $item['price'] * $item['quantity']
-        );
-    }
-
+    /** ───── Calculations ───── */
     public function getSubtotalProperty()
     {
-        return $this->calculateSubtotal();
+        return collect($this->cart)->sum(fn($item) => $item['price'] * $item['quantity']);
     }
 
     public function getTotalProperty()
     {
-        $total = $this->subtotal + $this->shippingFee - $this->couponDiscount;
+        $total = $this->subtotal + $this->shippingFee;
         return $total > 0 ? round($total, 2) : 0.00;
     }
 
-
-    public function calculateCoupon()
-    {
-        $this->couponDiscount = 0;
-        $this->appliedCoupon = null;
-
-        if (!$this->couponCode) return;
-
-        $code = strtoupper(trim($this->couponCode));
-        $coupon = Coupon::active()->where('code', $code)->first();
-
-        if (!$coupon) {
-            $this->addError('coupon', 'Invalid or expired coupon code.');
-            return;
-        }
-
-        $subtotal = $this->calculateSubtotal();
-
-        if ($coupon->min_order_amount && $subtotal < $coupon->min_order_amount) {
-            $this->addError('coupon', 'Order does not meet coupon minimum amount.');
-            return;
-        }
-
-        if ($coupon->type === 'percent') {
-            $this->couponDiscount = round($subtotal * ($coupon->value / 100), 2);
-        } else {
-            $this->couponDiscount = (float) $coupon->value;
-        }
-
-        $this->appliedCoupon = $coupon;
-        session()->put('coupon_code', $coupon->code);
-        session()->put('coupon_discount', $this->couponDiscount);
-        session()->put('coupon_id', $coupon->id);
-    }
-
-    public function removeCoupon()
-    {
-        $this->couponCode = null;
-        $this->couponDiscount = 0;
-        $this->appliedCoupon = null;
-        session()->forget('coupon_code');
-        session()->forget('coupon_discount');
-        session()->forget('coupon_id');
-    }
-
+    /** ───── Order Placement ───── */
     protected function rules()
     {
         return [
@@ -157,15 +82,9 @@ class Checkout extends Component
         ];
     }
 
-    public function applyCoupon()
-    {
-        $this->resetValidation('coupon');
-        $this->calculateCoupon();
-    }
-
     public function placeOrder()
     {
-        $this->validate($this->rules());
+        $this->validate();
 
         if (empty($this->cart)) {
             $this->addError('cart', 'Your cart is empty.');
@@ -175,9 +94,6 @@ class Checkout extends Component
         DB::beginTransaction();
 
         try {
-            $subtotal = $this->calculateSubtotal();
-            $total = $this->total;
-
             $order = Order::create([
                 'user_id' => Auth::id(),
                 'email' => $this->email,
@@ -192,11 +108,9 @@ class Checkout extends Component
                 'zip' => $this->zip,
                 'phone' => $this->phone,
                 'notes' => $this->notes,
-                'subtotal' => $subtotal,
+                'subtotal' => $this->subtotal,
                 'shipping_fee' => $this->shippingFee,
-                'coupon_code' => $this->appliedCoupon->code ?? null,
-                'coupon_discount' => $this->couponDiscount,
-                'total' => $total,
+                'total' => $this->total,
                 'status' => 'pending',
             ]);
 
@@ -216,28 +130,19 @@ class Checkout extends Component
 
             DB::commit();
 
-            // store order id for the success page
             session()->put('last_order_id', $order->id);
+            session()->forget(['cart', 'shipping_fee', 'selected_shipping']);
 
-            // clear cart & checkout session keys
-            session()->forget('cart');
-            session()->forget('shipping_fee');
-            session()->forget('coupon_discount');
-            session()->forget('coupon_code');
-            session()->forget('selected_shipping');
-
-            // make header/cart icon update
             $this->dispatch('cartUpdated');
 
-            // redirect to order success (Livewire redirect)
-            return redirect()->route('order.success', ['order' => $order->id]);
+            return redirect()->route('order.success', $order->id);
+
         } catch (\Throwable $e) {
             DB::rollBack();
             $this->addError('general', 'Failed to place order. Please try again.');
-            // log error in real app: Log::error($e)
-            return;
         }
     }
+
     public function render()
     {
         return view('livewire.checkout');

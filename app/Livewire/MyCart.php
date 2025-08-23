@@ -11,7 +11,7 @@ class MyCart extends Component
     public $couponDiscount = 0;
     public $selectedShipping = null;
     public $couponCode = '';
-    // public $total;
+
 
     public function mount()
     {
@@ -95,6 +95,8 @@ class MyCart extends Component
         return max(($this->subtotal + $this->shippingFee - $this->couponDiscount), 0);
     }
 
+
+    
     public function proceedToCheckout()
     {
         session()->put('cart', $this->cart);
