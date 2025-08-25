@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GuestController;
+use App\Livewire\OrderSuccess;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,10 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
 
     Route::get('my-cart', 'myCart')->name('guest.myCart');
     Route::get('checkout', 'checkout')->middleware('auth')->name('guest.checkout');
+
+    Route::get('/order-success/{order}', OrderSuccess::class)
+    ->name('order.success')
+    ->middleware(['auth']);
 
 
 

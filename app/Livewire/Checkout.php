@@ -136,7 +136,7 @@ class Checkout extends Component
 
             $this->dispatch('cartUpdated');
 
-            return redirect()->route('order.success', $order->id);
+            return redirect()->route('order.success', ['order' => $order->id]);
 
         } catch (\Throwable $e) {
             DB::rollBack();
