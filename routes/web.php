@@ -22,8 +22,8 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
     Route::get('checkout', 'checkout')->middleware('auth')->name('guest.checkout');
 
     Route::get('/order-success/{order}', OrderSuccess::class)
-    ->name('order.success')
-    ->middleware(['auth']);
+        ->name('order.success')
+        ->middleware(['auth']);
 
 
 
@@ -33,6 +33,10 @@ Route::prefix('/')->controller(GuestController::class)->group(function () {
     Route::get('shop', 'shop')->name('guest.shop');
 
     Route::get('search', 'search')->name('guest.search');
+
+    Route::get('/mic', function () {
+        throw new \Exception('Testing the 500 error page');
+    });
 
 
     Route::get('faq', 'faq')->name('guest.faq');
