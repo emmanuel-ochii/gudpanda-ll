@@ -74,6 +74,8 @@
                                     <option value="bx bx-tv">Electronics</option>
                                     <option value="bx bxs-tennis-ball">Sport</option>
                                     <option value="bx bx-closet">Fashion</option>
+                                    <option value="bx bx-bed">Upholstery</option>
+                                    <option value="bx  bx-computer">Computer and Office</option>
                                 </select>
 
                                 @error('icon')
