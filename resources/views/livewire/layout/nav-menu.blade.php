@@ -48,20 +48,46 @@
 
                          {{-- Search form --}}
                          <div class="category-form-wrap">
-                            <form action="{{ route('guest.search') }}" method="GET" class="header-form">
-                                <input class="form-control" type="text" name="query"
-                                       placeholder="Search for products, categories or brands" required>
-                                <button type="submit" class="submit rr-primary-btn">
-                                    Search <i class="fa-light fa-magnifying-glass"></i>
-                                </button>
-                            </form>
-                        </div>
+                             <form action="{{ route('guest.search') }}" method="GET" class="header-form">
+                                 <input class="form-control" type="text" name="query"
+                                     placeholder="Search for products, categories or brands" required>
+                                 <button type="submit" class="submit rr-primary-btn">
+                                     Search <i class="fa-light fa-magnifying-glass"></i>
+                                 </button>
+                             </form>
+                         </div>
                      </div>
                  </div>
 
                  <div class="header-middle-right">
                      <ul class="contact-item-list">
-                         <li><a href="/login" class="login-btn" wire:navigate>Login / Register</a></li>
+                         <li>
+                             @auth
+                                 {{-- ✅ User is logged in --}}
+                                 @php
+                                     $user = auth()->user();
+                                     if ($user->role === \App\Models\User::ROLE_ADMIN) {
+                                         $dashboardRoute = route('admin.dashboard');
+                                     } elseif ($user->role === \App\Models\User::ROLE_MANAGER) {
+                                         $dashboardRoute = route('manager.dashboard');
+                                     } elseif ($user->role === \App\Models\User::ROLE_VENDOR) {
+                                         $dashboardRoute = route('vendor.dashboard');
+                                     } else {
+                                         $dashboardRoute = route('customer.dashboard');
+                                     }
+                                 @endphp
+
+                                 <a href="{{ $dashboardRoute }}" class="login-btn" wire:navigate>
+                                     Dashboard
+                                 </a>
+                             @else
+                                 {{-- ❌ User not logged in --}}
+                                 <a href="{{ route('login') }}" class="login-btn" wire:navigate>
+                                     Login / Register
+                                 </a>
+                             @endauth
+                         </li>
+
                          <li>
                              {{-- <div class="header-cart-btn" style="background-color: #E53E3E">
                                  <a href="{{route('guest.myCart')}}" class="icon">
